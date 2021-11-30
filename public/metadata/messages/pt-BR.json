@@ -1,0 +1,15 @@
+{
+  "name": "QR & Barcode Reader",
+  "headline": "Digitalize Qr e código de barras e faça o que quiser com eles!",
+  "overview": "O aplicativo QR & Barcode Reader permite que você escaneie códigos com um EAN sku embutido, então você pode ir para o PDP ou adicioná-lo ao seu carrinho!",
+  "features": [
+    "Ler códigos Qr",
+    "Scan Barcodes",
+    "Redirecionar para o PDP dos produtos que você digitaliza",
+    "Integração com minicart para adicionar produtos rapidamente"
+  ],
+  "websiteURL": "https://vtex.com/",
+  "support": {
+    "url": "https://support.vtex.com/hc/requests"
+  }
+}

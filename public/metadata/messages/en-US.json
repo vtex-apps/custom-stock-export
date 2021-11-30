@@ -1,0 +1,15 @@
+{
+  "name": "QR & Barcode Reader",
+  "headline": "Scan Qr and Barcode and do whatever you want with them!",
+  "overview": "The QR & Barcode Reader app allows you to scan codes with an embedded sku EAN, then you can go to the PDP or add it to your cart!",
+  "features": [
+    "Scan Qr codes",
+    "Scan Barcodes",
+    "Redirect to the PDP of the products that you scan",
+    "Integration with minicart for add products quickly"
+  ],
+  "websiteURL": "https://vtex.com/",
+  "support": {
+    "url": "https://support.vtex.com/hc/requests"
+  }
+}

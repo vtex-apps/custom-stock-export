@@ -1,0 +1,65 @@
+{
+  "vendor": "vtexarg",
+  "name": "qr-barcode-reader",
+  "version": "1.0.4",
+  "title": "qr-barcode-reader",
+  "description": "qr-barcode-reader",
+  "builders": {
+    "messages": "1.x",
+    "store": "0.x",
+    "react": "3.x",
+    "node": "6.x",
+    "graphql": "1.x",
+    "docs": "0.x"
+  },
+  "dependencies": {
+    "vtex.styleguide": "9.x",
+    "vtex.css-handles": "0.x",
+    "vtex.session-client": "1.x",
+    "vtex.order-items": "0.x",
+    "vtex.order-manager": "0.x",
+    "vtex.pixel-manager": "1.x",
+    "vtex.checkout-resources": "0.x",
+    "vtex.checkout-graphql": "0.x"
+  },
+  "settingsSchema": {
+    "title": "Qr & Barcode Reader",
+    "type": "object",
+    "properties": {
+      "idMultipleEan": {
+        "title": "Id of Product Field MultipleEan",
+        "description": "You need to do this configuration only if you want to use the Multiple Ean mode. Copy the ID of the new product field you set up on Catalog > Categories and paste it here.",
+        "type": "number"
+      }
+    }
+  },
+  "billingOptions": {
+    "support": {
+      "url": "https://support.vtex.com/hc/requests"
+    },
+    "type": "free",
+    "availableCountries": [
+      "*"
+    ]
+  },
+  "policies": [
+    {
+      "name": "Sku.aspx"
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "{{account}}.myvtex.com",
+        "path": "/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "{{account}}.vtexcommercestable.com.br",
+        "path": "/api/*"
+      }
+    }
+  ],
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+}

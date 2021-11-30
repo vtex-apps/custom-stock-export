@@ -1,0 +1,16 @@
+{
+  "store/qr-reader.messageModalError": "The Qr shown does not match any product, please try another.",
+  "store/reader.messageModalSucces": "We will redirect you to the Product",
+  "store/qr-reader.buttonOpenReaderQr": "Qr Reader",
+  "store/barcode-reader.buttonOpenReaderBarcode": "Barcode Reader",
+  "store/barcode-reader.messageModalError": "The Barcode shown does not match any product, please try another.",
+  "store/reader.theProduct": "The product",
+  "store/reader.addToCartSucces": "was added to cart successfully.",
+  "store/reader.retry": "Retry",
+  "store/reader.cancel": "Cancel",
+  "store/reader.theSku": "The SKU",
+  "store/reader.doesNotExistInTheProduct": "does not exist in the product",
+  "store/reader.scannedEanMatches": "Scanned EAN matches",
+  "store/reader.differentProducts": "different products:",
+  "store/reader.reviewCatalog": "We suggest you review the catalog to continue."
+}

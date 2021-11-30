@@ -1,0 +1,17 @@
+type Item{
+  itemId: String
+  nameComplete: String
+}
+
+type DataGetProductResponse{
+  productId: String
+  productName: String
+  MultipleEan: [String]
+  linkText: String
+  items: [Item]
+}
+
+type GetProductResponse{
+  status: Int
+  data: [DataGetProductResponse]
+}

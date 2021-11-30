@@ -1,0 +1,15 @@
+query getProduct($ean: String){
+  getProductBySpecificationFilter(ean: $ean){
+    status
+    data {
+      productId
+      productName
+      MultipleEan
+      linkText
+      items {
+        itemId
+        nameComplete
+      }
+    }
+  }
+}
