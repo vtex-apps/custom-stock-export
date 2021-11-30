@@ -1,5 +1,5 @@
 {
-  "name": "qr-barcode-reader",
+  "name": "custom-stock-export",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@vtex/api": "^6.45.0",
-    "@vtex/clients": "^2.13.0",
-    "@zxing/library": "^0.18.6"
+    "@vtex/clients": "^2.13.0"
   }
 }

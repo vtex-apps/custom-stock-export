@@ -1,0 +1,12 @@
+{
+  "section": "orders",
+  "subSection": "inventoryAndShipping",
+  "subSectionItems": [
+    {
+      "isNew": true,
+      "labelId": "admin/admin.app.navigation.title",
+      "path": "/admin/custom-stock-export"
+    }
+  ],
+  "searchKeyWordsHelpers": "admin/admin.app.navigation.search.kws"
+}

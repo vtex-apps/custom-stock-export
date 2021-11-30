@@ -1,0 +1,6 @@
+{
+  "admin.app.custom-stock-export": {
+    "component": "CustomStockExport",
+    "path": "/admin/app/custom-stock-export"
+  }
+}

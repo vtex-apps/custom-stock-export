@@ -1,43 +1,80 @@
-export interface QrReaderProps {
-  setButtonUseQr: (qr: boolean) => void
-  separator: string
-  eanIndex: number
-  action: string
-  mode: string
-}
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import type { ReactNode, SetStateAction, Dispatch } from 'react'
 
-export interface BarcodeReaderProps {
-  setButtonUseBarcode: (barcode: boolean) => void
-  action: string
-  mode: string
-}
+declare global {
+  export interface Files {
+    key: string
+    fileName: string
+  }
 
-export interface SkuDataType {
-  Id: string
-  NameComplete: string
-  DetailUrl: string
-}
+  export interface Order {
+    id: number
+    idMasterData: string
+    status: string
+    orderId: sting
+    products: string
+    files: string
+    invoice: {
+      rowId: number
+      invoiceNumber: string
+    }
+  }
 
-export type UseEanType = 'qr' | 'barcode'
+  export interface TableProps {
+    orderList: Order[]
+  }
 
-export interface UseEanProps {
-  setButton: (button: boolean) => void
-  setUse: (code: boolean) => void
-  setSuccessAlert: ((alert: string) => void) | null
-  ean: string
-  type: UseEanType
-  mode: string
-}
+  export interface OrderFromMasterData {
+    id: string
+    orderId: sting
+    status: string
+    invoiceNumber: string
+  }
 
-export type ModalType = 'success' | 'error' | 'errorMultipleProduct'
+  export interface ProductTableProps {
+    orderId: sting
+  }
 
-export interface ListMultipleProduct {
-  productName: string
-  productLink: string
-}
+  export interface ImagePreviewProps {
+    url: sting
+  }
+  export interface SuccessComponent {
+    message: string
+    onClose: () => void
+  }
 
-export interface OrderFormContext {
-  loading: boolean
-  orderForm: OrderFormType | undefined
-  setOrderForm: (orderForm: Partial<OrderFormType>) => void
+  export interface SuccessArrayComponent {
+    messages: string[]
+    onClose: () => void
+  }
+
+  export interface ErrorComponent {
+    message: string
+    onClose: () => void
+  }
+
+  export interface ErrorArrayComponent {
+    messages: string[]
+    onClose: () => void
+  }
+
+  interface BodyUpdateDocument {
+    orderId: string
+    status: string
+    invoiceNumber: string
+  }
+
+  interface ItemsInvoice {
+    id: string
+    quantity: number
+    price: number
+  }
+
+  interface InvoiceBody {
+    type: string
+    issuanceDate: string
+    invoiceNumber: string
+    invoiceValue: number
+    items: [ItemsInvoice]
+  }
 }

@@ -1,16 +1,5 @@
 {
-  "store/qr-reader.messageModalError": "El Qr mostrado no coincide con ningun producto, por favor intente con otro.",
-  "store/reader.messageModalSucces": "Te redirigiremos al Producto",
-  "store/qr-reader.buttonOpenReaderQr": "Qr Reader",
-  "store/barcode-reader.buttonOpenReaderBarcode": "Barcode Reader",
-  "store/barcode-reader.messageModalError": "El Barcode mostrado no coincide con ningun producto, por favor intente con otro.",
-  "store/reader.theProduct": "El producto",
-  "store/reader.addToCartSucces": "se agregó al carrito con éxito.",
-  "store/reader.retry": "Reintentar",
-  "store/reader.cancel": "Cancelar",
-  "store/reader.theSku": "El SKU",
-  "store/reader.doesNotExistInTheProduct": "no existe en el product",
-  "store/reader.scannedEanMatches": "El EAN escaneado coincide con",
-  "store/reader.differentProducts": "productos distintos:",
-  "store/reader.reviewCatalog": "Te sugerimos revisar el catálogo para poder continuar."
+  "admin/admin.app.navigation.title": "Custom Stock Export",
+  "admin/admin.app.navigation.search.kws": "personalizado, custom, stock, exportación, export",
+  "admin/admin.app.custom-stock-export.pageTitle": "Custom Stock Export"
 }
