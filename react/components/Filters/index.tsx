@@ -3,26 +3,65 @@ import React, { useState } from 'react'
 import { pathOr } from 'ramda'
 import { Input, Checkbox, FilterBar } from 'vtex.styleguide'
 import type { ApolloError } from 'apollo-client'
+import { useIntl } from 'react-intl'
 
+import { titlesIntl } from '../../utils/intl'
 import CategorySelect from './CategorySelect'
 
 export default function Filters() {
   const [statements, setStatements] = useState([])
+  const intl = useIntl()
+
+  const filterClear = intl.formatMessage(titlesIntl.filterClear)
+  const filterAll = intl.formatMessage(titlesIntl.filterAll)
+  const filterNone = intl.formatMessage(titlesIntl.filterNone)
+  const filterAny = intl.formatMessage(titlesIntl.filterAny)
+  const filterIs = intl.formatMessage(titlesIntl.filterIs)
+  const filterIsNot = intl.formatMessage(titlesIntl.filterIsNot)
+  const filterContains = intl.formatMessage(titlesIntl.filterContains)
+  const filterApply = intl.formatMessage(titlesIntl.filterApply)
+
+  function simpleInputVerbs() {
+    return [
+      {
+        label: filterIs,
+        value: '=',
+        object: (props: any) => <SimpleInputObject {...props} />,
+      },
+      {
+        label: filterIsNot,
+        value: '!=',
+        object: (props: any) => <SimpleInputObject {...props} />,
+      },
+      {
+        label: filterContains,
+        value: 'contains',
+        object: (props: any) => <SimpleInputObject {...props} />,
+      },
+    ]
+  }
 
   return (
     <FilterBar
-      alwaysVisibleFilters={['categoryId', 'id', 'email', 'status']}
+      alwaysVisibleFilters={[
+        'categoryId',
+        'productId',
+        'productName',
+        'email',
+        'status',
+      ]}
       statements={statements}
       onChangeStatements={(s: any) => setStatements(s)}
-      clearAllFiltersButtonLabel="Clear Filters"
+      clearAllFiltersButtonLabel={filterClear}
+      submitFilterLabel={filterApply}
       options={{
         categoryId: {
           label: 'Category',
-          renderFilterLabel: pathOr(`All`, ['object', 'label']),
+          renderFilterLabel: pathOr(filterAll, ['object', 'label']),
           verbs: [
             {
               label: '',
-              value: 'is',
+              value: filterIs,
               object: function VerbObject({
                 onChange,
                 value,
@@ -44,16 +83,38 @@ export default function Filters() {
             },
           ],
         },
-        id: {
-          label: 'Order ID',
+        productId: {
+          label: 'Product ID',
           renderFilterLabel: (st: any) => {
             if (!st || !st.object) {
               // you should treat empty object cases only for alwaysVisibleFilters
-              return 'Any'
+              return filterAny
             }
 
             return `${
-              st.verb === '=' ? 'is' : st.verb === '!=' ? 'is not' : 'contains'
+              st.verb === '='
+                ? filterIs
+                : st.verb === '!='
+                ? filterIsNot
+                : filterContains
+            } ${st.object}`
+          },
+          verbs: simpleInputVerbs(),
+        },
+        productName: {
+          label: 'Product Name',
+          renderFilterLabel: (st: any) => {
+            if (!st || !st.object) {
+              // you should treat empty object cases only for alwaysVisibleFilters
+              return filterAny
+            }
+
+            return `${
+              st.verb === '='
+                ? filterIs
+                : st.verb === '!='
+                ? filterIsNot
+                : filterContains
             } ${st.object}`
           },
           verbs: simpleInputVerbs(),
@@ -63,11 +124,15 @@ export default function Filters() {
           renderFilterLabel: (st: any) => {
             if (!st || !st.object) {
               // you should treat empty object cases only for alwaysVisibleFilters
-              return 'Any'
+              return filterAny
             }
 
             return `${
-              st.verb === '=' ? 'is' : st.verb === '!=' ? 'is not' : 'contains '
+              st.verb === '='
+                ? filterIs
+                : st.verb === '!='
+                ? filterIsNot
+                : filterContains
             } ${st.object}`
           },
           verbs: simpleInputVerbs(),
@@ -77,7 +142,7 @@ export default function Filters() {
           renderFilterLabel: (st: any) => {
             if (!st || !st.object) {
               // you should treat empty object cases only for alwaysVisibleFilters
-              return 'All'
+              return filterAll
             }
 
             const keys: any = st.object ? Object.keys(st.object) : {}
@@ -93,7 +158,11 @@ export default function Filters() {
             })
 
             return `${
-              isAllTrue ? 'All' : isAllFalse ? 'None' : `${trueKeysLabel}`
+              isAllTrue
+                ? filterAll
+                : isAllFalse
+                ? filterNone
+                : `${trueKeysLabel}`
             }`
           },
           verbs: [
@@ -108,13 +177,13 @@ export default function Filters() {
         utm: {
           label: 'UTM Source',
           renderFilterLabel: (st: any) =>
-            `${st.verb === '=' ? 'is' : 'contains'} ${st.object}`,
+            `${st.verb === '=' ? filterIs : filterContains} ${st.object}`,
           verbs: simpleInputVerbs(),
         },
         seller: {
           label: 'Seller',
           renderFilterLabel: (st: any) =>
-            `${st.verb === '=' ? 'is' : 'contains'} ${st.object}`,
+            `${st.verb === '=' ? filterIs : filterContains} ${st.object}`,
           verbs: simpleInputVerbs(),
         },
       }}
@@ -175,26 +244,6 @@ function StatusSelectorObject({ value, onChange }: any) {
       })}
     </div>
   )
-}
-
-function simpleInputVerbs() {
-  return [
-    {
-      label: 'is',
-      value: '=',
-      object: (props: any) => <SimpleInputObject {...props} />,
-    },
-    {
-      label: 'is not',
-      value: '!=',
-      object: (props: any) => <SimpleInputObject {...props} />,
-    },
-    {
-      label: 'contains',
-      value: 'contains',
-      object: (props: any) => <SimpleInputObject {...props} />,
-    },
-  ]
 }
 
 interface StatementObjectProps<T, U = SelectOption | null> {

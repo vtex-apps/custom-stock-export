@@ -6,5 +6,13 @@
   "admin/admin.app.custom-stock-export.filter.category.placeholder": "Digite uma categoria…",
   "admin/admin.app.custom-stock-export.filter.category.error": "Algo deu errado ao tentar carregar as categorias",
   "admin/admin.app.custom-stock-export.filter.no-options-found": "Nenhum resultado encontrado",
-  "admin/admin.app.custom-stock-export.filter.try-again": "Tente Novamente"
+  "admin/admin.app.custom-stock-export.filter.try-again": "Tente Novamente",
+  "admin/admin.app.custom-stock-export.filterClear": "Filtros Claros",
+  "admin/admin.app.custom-stock-export.filterAll": "Tudo",
+  "admin/admin.app.custom-stock-export.filterNone": "Nenhum",
+  "admin/admin.app.custom-stock-export.filterAny": "Algum",
+  "admin/admin.app.custom-stock-export.filterIs": "igual",
+  "admin/admin.app.custom-stock-export.filterIsNot": "não igual",
+  "admin/admin.app.custom-stock-export.filterContains": "contém",
+  "admin/admin.app.custom-stock-export.filterApply": "Aplique"
 }
