@@ -13,21 +13,17 @@
     "docs": "0.x"
   },
   "dependencies": {
-    "vtex.styleguide": "9.x"
+    "vtex.styleguide": "9.x",
+    "vtex.catalog-graphql": "1.x"
   },
   "billingOptions": {
     "support": {
       "url": "https://support.vtex.com/hc/requests"
     },
     "type": "free",
-    "availableCountries": [
-      "*"
-    ]
+    "availableCountries": ["*"]
   },
   "policies": [
-    {
-      "name": "Sku.aspx"
-    },
     {
       "name": "outbound-access",
       "attrs": {
@@ -38,9 +34,41 @@
     {
       "name": "outbound-access",
       "attrs": {
+        "host": "portal.vtexcommercestable.com.br",
+        "path": "/api/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "portal.vtexcommercebeta.com.br",
+        "path": "/api/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
         "host": "{{account}}.vtexcommercestable.com.br",
         "path": "/api/*"
       }
+    },
+    {
+      "name": "Get_Account_By_Identifier"
+    },
+    {
+      "name": "ADMIN_DS"
+    },
+    {
+      "name": "POWER_USER_DS"
+    },
+    {
+      "name": "AdminPortal"
+    },
+    {
+      "name": "colossus-fire-event"
+    },
+    {
+      "name": "colossus-write-logs"
     }
   ],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"

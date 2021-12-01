@@ -1,0 +1,11 @@
+type DataGetCategoryTreeResponse {
+  id: Int
+  name: String
+  hasChildren: Boolean
+  children: [DataGetCategoryTreeResponse]
+}
+
+type GetCategoryTreeResponse {
+  status: Int
+  data: [DataGetCategoryTreeResponse]
+}

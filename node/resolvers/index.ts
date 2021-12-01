@@ -1,9 +1,7 @@
-import { queries as catalogSystemQueries } from './catalogSystem'
-import { queries as searchQueries } from './search'
+import { queries as catalogQueries } from './catalog'
 
 export const resolvers = {
   Query: {
-    ...catalogSystemQueries,
-    ...searchQueries,
+    ...catalogQueries,
   },
 }

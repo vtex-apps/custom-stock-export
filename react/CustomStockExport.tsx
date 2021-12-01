@@ -3,10 +3,11 @@ import { Layout, PageHeader, PageBlock } from 'vtex.styleguide'
 import { useIntl } from 'react-intl'
 
 import { titlesIntl } from './utils/intl'
-import LoadingSpinner from './components/LoadingSpinner'
+import Filters from './components/Filters'
 
 export default function CustomStockExport() {
   const intl = useIntl()
+
   return (
     <Layout
       fullWidth
@@ -15,8 +16,7 @@ export default function CustomStockExport() {
       }
     >
       <PageBlock variation="full">
-        {`Test`}
-        <LoadingSpinner />
+        <Filters />
       </PageBlock>
     </Layout>
   )

@@ -1,0 +1,145 @@
+query getCategoryTree {
+  getCategoryTree {
+    status
+    data {
+      id
+      name
+      hasChildren
+      children {
+        id
+        name
+        hasChildren
+        children {
+          id
+          name
+          hasChildren
+          children {
+            id
+            name
+            hasChildren
+            children {
+              id
+              name
+              hasChildren
+              children {
+                id
+                name
+                hasChildren
+                children {
+                  id
+                  name
+                  hasChildren
+                  children {
+                    id
+                    name
+                    hasChildren
+                    children {
+                      id
+                      name
+                      hasChildren
+                      children {
+                        id
+                        name
+                        hasChildren
+                        children {
+                          id
+                          name
+                          hasChildren
+                          children {
+                            id
+                            name
+                            hasChildren
+                            children {
+                              id
+                              name
+                              hasChildren
+                              children {
+                                id
+                                name
+                                hasChildren
+                                children {
+                                  id
+                                  name
+                                  hasChildren
+                                  children {
+                                    id
+                                    name
+                                    hasChildren
+                                    children {
+                                      id
+                                      name
+                                      hasChildren
+                                      children {
+                                        id
+                                        name
+                                        hasChildren
+                                        children {
+                                          id
+                                          name
+                                          hasChildren
+                                          children {
+                                            id
+                                            name
+                                            hasChildren
+                                            children {
+                                              id
+                                              name
+                                              hasChildren
+                                              children {
+                                                id
+                                                name
+                                                hasChildren
+                                                children {
+                                                  id
+                                                  name
+                                                  hasChildren
+                                                  children {
+                                                    id
+                                                    name
+                                                    hasChildren
+                                                    children {
+                                                      id
+                                                      name
+                                                      hasChildren
+                                                      children {
+                                                        id
+                                                        name
+                                                        hasChildren
+                                                        children {
+                                                          id
+                                                          name
+                                                          hasChildren
+                                                          children {
+                                                            id
+                                                            name
+                                                            hasChildren
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

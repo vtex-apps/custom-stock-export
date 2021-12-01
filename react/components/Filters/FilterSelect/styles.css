@@ -1,0 +1,11 @@
+.popover {
+  max-height: 14rem;
+}
+
+.border-medium {
+  border-width: medium;
+}
+
+.select-input:hover {
+  border-color: hsl(0, 0%, 70%);
+}

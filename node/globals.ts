@@ -49,5 +49,4 @@ declare global {
     Key: string
     Value: string
   }
-
 }

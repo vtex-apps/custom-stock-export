@@ -1,5 +1,10 @@
 {
   "admin/admin.app.navigation.title": "Exportação de estoque personalizado",
   "admin/admin.app.navigation.search.kws": "personalizado, custom, estoque, exportação, export",
-  "admin/admin.app.custom-stock-export.pageTitle": "Exportação de estoque personalizado"
+  "admin/admin.app.custom-stock-export.pageTitle": "Exportação de estoque personalizado",
+  "admin/admin.app.custom-stock-export.filter.category.loading": "Carregando…",
+  "admin/admin.app.custom-stock-export.filter.category.placeholder": "Digite uma categoria…",
+  "admin/admin.app.custom-stock-export.filter.category.error": "Algo deu errado ao tentar carregar as categorias",
+  "admin/admin.app.custom-stock-export.filter.no-options-found": "Nenhum resultado encontrado",
+  "admin/admin.app.custom-stock-export.filter.try-again": "Tente Novamente"
 }
