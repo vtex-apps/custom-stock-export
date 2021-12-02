@@ -8,12 +8,10 @@ import type { Props as OptionProps } from './Option'
 import Option from './Option'
 import SelectInput from './SelectInput'
 import styles from './styles.css'
+import { filtersMessages } from '../../../utils/intl'
 
 const messages = defineMessages({
-  noOptionsFound: {
-    id: 'admin/admin.app.custom-stock-export.filter.no-options-found',
-    defaultMessage: '',
-  },
+  noOptionsFound: filtersMessages.noOptionsFound,
 })
 
 interface InputProps

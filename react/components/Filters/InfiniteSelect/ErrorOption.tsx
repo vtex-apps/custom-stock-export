@@ -5,6 +5,8 @@ import React, { useEffect, useRef, forwardRef } from 'react'
 import { defineMessages, FormattedMessage } from 'react-intl'
 import { IconWarning, Button } from 'vtex.styleguide'
 
+import { filtersMessages } from '../../../utils/intl'
+
 export type Props = {
   filterInput: HTMLInputElement | null
   roundedBottom?: boolean
@@ -21,10 +23,7 @@ export interface SelectOption {
 }
 
 const messages = defineMessages({
-  tryAgain: {
-    id: 'admin/admin.app.custom-stock-export.filter.try-again',
-    defaultMessage: '',
-  },
+  tryAgain: filtersMessages.tryAgain,
 })
 
 const ErrorOption: ForwardRefExoticComponent<Props> = forwardRef<

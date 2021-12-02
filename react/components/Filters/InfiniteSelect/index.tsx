@@ -20,7 +20,7 @@ export type Props<T = SelectItem> = QueryProps<T> & {
   onClear?: () => void
   keepValueInput?: boolean
   onSelect: (option: SelectOption) => void
-  messages: { [key: string]: { id: string; defaultMessage: string } }
+  messages: { [key: string]: { id: string } }
   testId?: string
 }
 

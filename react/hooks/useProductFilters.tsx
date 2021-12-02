@@ -147,16 +147,16 @@ export function useProductFilters({
     setQuery({ ...newQuery, ...resetPaginationVariables })
   }
 
-  const filter = { ...quantityFilters.filter, ...warehouseFilter.filter }
+  const filter = { ...warehouseFilter.filter, ...quantityFilters.filter }
 
   const props = {
     submitFilterLabel: intl.formatMessage(messages.ok),
     alwaysVisibleFilters: Object.keys(filter),
-    statements: [...quantityFilters.statements, ...warehouseFilter.statements],
+    statements: [...warehouseFilter.statements, ...quantityFilters.statements],
     onChangeStatements: onStatementsChange
       ? onStatementsChange(handleStatementsChange)
       : handleStatementsChange,
-    options: { ...quantityFilters.options, ...warehouseFilter.options },
+    options: { ...warehouseFilter.options, ...quantityFilters.options },
   }
 
   useFilterUsageEvents()

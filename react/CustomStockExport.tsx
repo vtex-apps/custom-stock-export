@@ -2,7 +2,7 @@ import React from 'react'
 import { Layout, PageHeader, PageBlock } from 'vtex.styleguide'
 import { useIntl } from 'react-intl'
 
-import { titlesIntl } from './utils/intl'
+import { appMessages } from './utils/intl'
 import Filters from './components/Filters'
 
 export default function CustomStockExport() {
@@ -12,7 +12,7 @@ export default function CustomStockExport() {
     <Layout
       fullWidth
       pageHeader={
-        <PageHeader title={intl.formatMessage(titlesIntl.pageTitle)} />
+        <PageHeader title={intl.formatMessage(appMessages.pageTitle)} />
       }
     >
       <PageBlock variation="full">

@@ -12,21 +12,20 @@ import { useIntl } from 'react-intl'
 
 import { useQuantityFilters } from '../../hooks/useQuantityFilters'
 import { useWarehouseFilter } from '../../hooks/useWarehouseFilter'
-import { titlesIntl } from '../../utils/intl'
+import { filtersMessages, appMessages } from '../../utils/intl'
 import CategorySelect from './CategorySelect'
 
 export default function Filters() {
   const [statements, setStatements] = useState([])
   const intl = useIntl()
 
-  const filterClear = intl.formatMessage(titlesIntl.filterClear)
-  const filterAll = intl.formatMessage(titlesIntl.filterAll)
-  // const filterNone = intl.formatMessage(titlesIntl.filterNone)
-  const filterAny = intl.formatMessage(titlesIntl.filterAny)
-  const filterIs = intl.formatMessage(titlesIntl.filterIs)
-  const filterIsNot = intl.formatMessage(titlesIntl.filterIsNot)
-  const filterContains = intl.formatMessage(titlesIntl.filterContains)
-  const filterApply = intl.formatMessage(titlesIntl.filterApply)
+  const clear = intl.formatMessage(filtersMessages.clear)
+  const all = intl.formatMessage(filtersMessages.all)
+  const any = intl.formatMessage(filtersMessages.any)
+  const is = intl.formatMessage(filtersMessages.is)
+  const isNot = intl.formatMessage(filtersMessages.isNot)
+  const contains = intl.formatMessage(filtersMessages.contains)
+  const apply = intl.formatMessage(filtersMessages.apply)
   const exportIcon = <Download />
 
   const quantityFilters = useQuantityFilters()
@@ -35,17 +34,17 @@ export default function Filters() {
   function simpleInputVerbs() {
     return [
       {
-        label: filterIs,
+        label: is,
         value: '=',
         object: (props: any) => <SimpleInputObject {...props} />,
       },
       {
-        label: filterIsNot,
+        label: isNot,
         value: '!=',
         object: (props: any) => <SimpleInputObject {...props} />,
       },
       {
-        label: filterContains,
+        label: contains,
         value: 'contains',
         object: (props: any) => <SimpleInputObject {...props} />,
       },
@@ -57,7 +56,7 @@ export default function Filters() {
     console.info('statements', statements)
   }
 
-  const filter = { ...quantityFilters.filter, ...warehouseFilter.filter }
+  const filter = { ...warehouseFilter.filter, ...quantityFilters.filter }
 
   return (
     <div>
@@ -70,16 +69,16 @@ export default function Filters() {
         ]}
         statements={statements}
         onChangeStatements={(s: any) => setStatements(s)}
-        clearAllFiltersButtonLabel={filterClear}
-        submitFilterLabel={filterApply}
+        clearAllFiltersButtonLabel={clear}
+        submitFilterLabel={apply}
         options={{
           categoryId: {
             label: 'Category',
-            renderFilterLabel: pathOr(filterAll, ['object', 'label']),
+            renderFilterLabel: pathOr(all, ['object', 'label']),
             verbs: [
               {
                 label: '',
-                value: filterIs,
+                value: is,
                 object: function VerbObject({
                   onChange,
                   value,
@@ -106,15 +105,11 @@ export default function Filters() {
             renderFilterLabel: (st: any) => {
               if (!st || !st.object) {
                 // you should treat empty object cases only for alwaysVisibleFilters
-                return filterAny
+                return any
               }
 
               return `${
-                st.verb === '='
-                  ? filterIs
-                  : st.verb === '!='
-                  ? filterIsNot
-                  : filterContains
+                st.verb === '=' ? is : st.verb === '!=' ? isNot : contains
               } ${st.object}`
             },
             verbs: simpleInputVerbs(),
@@ -124,92 +119,21 @@ export default function Filters() {
             renderFilterLabel: (st: any) => {
               if (!st || !st.object) {
                 // you should treat empty object cases only for alwaysVisibleFilters
-                return filterAny
+                return any
               }
 
               return `${
-                st.verb === '='
-                  ? filterIs
-                  : st.verb === '!='
-                  ? filterIsNot
-                  : filterContains
+                st.verb === '=' ? is : st.verb === '!=' ? isNot : contains
               } ${st.object}`
             },
             verbs: simpleInputVerbs(),
           },
-          /* email: {
-            label: 'Email',
-            renderFilterLabel: (st: any) => {
-              if (!st || !st.object) {
-                // you should treat empty object cases only for alwaysVisibleFilters
-                return filterAny
-              }
-
-              return `${
-                st.verb === '='
-                  ? filterIs
-                  : st.verb === '!='
-                  ? filterIsNot
-                  : filterContains
-              } ${st.object}`
-            },
-            verbs: simpleInputVerbs(),
-          },
-          status: {
-            label: 'Status',
-            renderFilterLabel: (st: any) => {
-              if (!st || !st.object) {
-                // you should treat empty object cases only for alwaysVisibleFilters
-                return filterAll
-              }
-
-              const keys: any = st.object ? Object.keys(st.object) : {}
-              const isAllTrue = !keys.some((key: any) => !st.object[key])
-              const isAllFalse = !keys.some((key: any) => st.object[key])
-              const trueKeys = keys.filter((key: any) => st.object[key])
-              let trueKeysLabel = ''
-
-              trueKeys.forEach((key: any, index: number) => {
-                trueKeysLabel += `${key}${
-                  index === trueKeys.length - 1 ? '' : ', '
-                }`
-              })
-
-              return `${
-                isAllTrue
-                  ? filterAll
-                  : isAllFalse
-                  ? filterNone
-                  : `${trueKeysLabel}`
-              }`
-            },
-            verbs: [
-              {
-                label: 'includes',
-                value: 'includes',
-                object: (props: any) => <StatusSelectorObject {...props} />,
-              },
-            ],
-          },
-
-          utm: {
-            label: 'UTM Source',
-            renderFilterLabel: (st: any) =>
-              `${st.verb === '=' ? filterIs : filterContains} ${st.object}`,
-            verbs: simpleInputVerbs(),
-          },
-          seller: {
-            label: 'Seller',
-            renderFilterLabel: (st: any) =>
-              `${st.verb === '=' ? filterIs : filterContains} ${st.object}`,
-            verbs: simpleInputVerbs(),
-          }, */
-          ...quantityFilters.options,
           ...warehouseFilter.options,
+          ...quantityFilters.options,
         }}
       />
       <ButtonWithIcon icon={exportIcon} onClick={onclickExport}>
-        {`${intl.formatMessage(titlesIntl.exportButton)}`}
+        {`${intl.formatMessage(appMessages.exportButton)}`}
       </ButtonWithIcon>
     </div>
   )
