@@ -1668,6 +1668,30 @@ vtex-tachyons@^3.2.0:
   resolved "https://registry.yarnpkg.com/vtex-tachyons/-/vtex-tachyons-3.2.2.tgz#e9e39d939778ef7d80a92c476cecf7417f79a6e8"
   integrity sha512-4M53uuvV+2XEjplVYiPgpBuaI5dtGksVgz/20NNjbZkXklJM7Lwgod/hOoh3PtIn36+95zZVVgXYfs3e6EU8YA==
 
+"vtex.admin-inventory@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.admin-inventory@0.46.0/public/@types/vtex.admin-inventory":
+  version "0.46.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.admin-inventory@0.46.0/public/@types/vtex.admin-inventory#c3acb457d8ccb8f7ecc29939486d3b1a3651296e"
+
+"vtex.inventory-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.inventory-graphql@0.18.2/public/@types/vtex.inventory-graphql":
+  version "0.18.2"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.inventory-graphql@0.18.2/public/@types/vtex.inventory-graphql#732d4a8cd9e22c7701ed5349f6e0a79198aa4a1f"
+
+"vtex.logistics-carrier-commons@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.logistics-carrier-commons@0.66.0/public/@types/vtex.logistics-carrier-commons":
+  version "0.66.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.logistics-carrier-commons@0.66.0/public/@types/vtex.logistics-carrier-commons#bb1288d002b3a03bfb1b9f2680cebe6f159790f9"
+
+"vtex.logistics-carrier-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.logistics-carrier-graphql@0.41.0/public/@types/vtex.logistics-carrier-graphql":
+  version "0.41.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.logistics-carrier-graphql@0.41.0/public/@types/vtex.logistics-carrier-graphql#da739407fdae11382cd7753a258f3fb55d850ebf"
+
+"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.132.3/public/@types/vtex.render-runtime":
+  version "8.132.3"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.132.3/public/@types/vtex.render-runtime#c7dd142e384f38bd7a7c841543b73e9349fadc93"
+
+"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.145.2/public/@types/vtex.styleguide":
+  version "9.145.2"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.145.2/public/@types/vtex.styleguide#ca64bf8408ad3eb487b0822dd68f77565c986a56"
+
 warning@^4.0.0, warning@^4.0.2, warning@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"

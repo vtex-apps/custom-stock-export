@@ -14,7 +14,10 @@
   },
   "dependencies": {
     "vtex.styleguide": "9.x",
-    "vtex.catalog-graphql": "1.x"
+    "vtex.catalog-graphql": "1.x",
+    "vtex.inventory-graphql": "0.x",
+    "vtex.logistics-carrier-commons": "0.x",
+    "vtex.logistics-carrier-graphql": "0.x"
   },
   "billingOptions": {
     "support": {

@@ -1,0 +1,13 @@
+query warehouses($page: Int!, $perPage: Int!, $keyword: String) {
+  warehouses(page: $page, perPage: $perPage, keyword: $keyword)
+    @context(provider: "vtex.logistics-carrier-graphql") {
+    items {
+      id
+      name
+    }
+    paging {
+      page
+      pages
+    }
+  }
+}
