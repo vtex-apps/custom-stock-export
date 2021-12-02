@@ -1,0 +1,12 @@
+{
+  "name": "Massive Stock Update",
+  "headline": "Actualice el stock mediante lotes.",
+  "overview": "Actualice el stock por lotes para reducir los tiempos de integración y los gastos generales de las solicitudes.",
+  "features": [
+    "Servicio de actualización masiva de inventario a través de SKU y warehouseId."
+  ],
+  "websiteURL": "https://vtex.com/",
+  "support": {
+    "url": "https://support.vtex.com/hc/requests"
+  }
+}
