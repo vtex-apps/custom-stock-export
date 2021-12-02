@@ -1,0 +1,6 @@
+query warehousesNames($ids: [ID!]!) {
+  warehousesList(ids: $ids)
+    @context(provider: "vtex.logistics-carrier-graphql") {
+    name
+  }
+}

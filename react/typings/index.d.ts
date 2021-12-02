@@ -1,0 +1,1 @@
+type AutocompleteOption = string | StructuredAutocompleteOption

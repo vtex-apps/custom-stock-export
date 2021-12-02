@@ -1,0 +1,14 @@
+query categories($searchKey: String!, $page: Int!, $pageSize: Int!) {
+  categories(term: $searchKey, page: $page, pageSize: $pageSize, active: true) {
+    items {
+      id
+      name
+    }
+    paging {
+      page
+      perPage
+      pages
+      total
+    }
+  }
+}
