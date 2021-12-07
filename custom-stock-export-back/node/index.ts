@@ -1,14 +1,17 @@
-import type { ClientsConfig, ServiceContext, RecorderState } from '@vtex/api'
+import type { ClientsConfig, ServiceContext } from '@vtex/api'
 import { LRUCache, method, Service } from '@vtex/api'
 
 import { Clients } from './clients'
-import { inventoryMiddleware } from './middlewares/inventoryMiddleware'
-import { validateMiddleware } from './middlewares/validateMiddleware'
+import { getBody } from './middlewares/getBody'
+import { getListOfProductsAndSkus } from './middlewares/getListOfProductsAndSkus'
+import { filterByProductId } from './middlewares/filterByProductId'
+import type { State } from './interfaces'
 
 const TIMEOUT_MS = 600000
 
 // Create a LRU memory cache for the Status client.
 // The @vtex/api HttpClient respects Cache-Control headers and uses the provided cache.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const memoryCache = new LRUCache<string, any>({ max: 5000 })
 
 metrics.trackCache('status', memoryCache)
@@ -33,30 +36,6 @@ const clients: ClientsConfig<Clients> = {
 declare global {
   // We declare a global Context type just to avoid re-writing ServiceContext<Clients, State> in every handler and resolver
   type Context = ServiceContext<Clients, State>
-
-  // The shape of our State object found in `ctx.state`. This is used as state bag to communicate between middlewares.
-  interface State extends RecorderState {
-    validatedBody: UpdateRequest[]
-  }
-
-  interface UpdateRequest {
-    sku: number
-    warehouseId?: number | string
-    quantity?: number
-    unlimitedQuantity?: boolean
-    dateUtcOnBalanceSystem?: string
-  }
-
-  interface UpdateResponse {
-    sku: number
-    warehouseId?: number | string
-    success: string
-    error?: number | string
-    errorMessage?: string
-    quantity?: number
-    unlimitedQuantity?: boolean
-    dateUtcOnBalanceSystem?: string
-  }
 }
 
 // Export a service that defines route handlers and client options.
@@ -64,8 +43,8 @@ export default new Service({
   clients,
   routes: {
     // `status` is the route ID from service.json. It maps to an array of middlewares (or a single handler).
-    status: method({
-      PUT: [validateMiddleware, inventoryMiddleware],
+    export: method({
+      POST: [getBody, getListOfProductsAndSkus, filterByProductId],
     }),
   },
 })

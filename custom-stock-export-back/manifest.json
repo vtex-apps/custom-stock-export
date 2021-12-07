@@ -1,9 +1,11 @@
 {
   "name": "custom-stock-export-back",
   "vendor": "vtexarg",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "title": "Custom Stock Export Back",
   "description": "Custom Stock Export Back",
+  "mustUpdateAt": "2018-01-04",
+  "categories": [],
   "dependencies": {},
   "builders": {
     "node": "6.x",
@@ -14,9 +16,7 @@
       "url": "https://support.vtex.com/hc/requests"
     },
     "type": "free",
-    "availableCountries": [
-      "*"
-    ]
+    "availableCountries": ["*"]
   },
   "scripts": {
     "prereleasy": "bash lint.sh"
@@ -26,12 +26,12 @@
     {
       "name": "outbound-access",
       "attrs": {
-        "host": "portal.vtexcommercestable.com.br",
-        "path": "api/logistics/pvt/inventory/skus/*"
+        "host": "{{account}}.myvtex.com",
+        "path": "/*"
       }
     },
     {
-      "name": "LogisticsAdmin"
+      "name": "ProdutoForm.aspx"
     },
     {
       "name": "colossus-fire-event"

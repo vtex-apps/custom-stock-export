@@ -1,9 +1,9 @@
 import { IOClients } from '@vtex/api'
 
-import InventoryRestClient from './inventoryRestClient'
+import GetProductAndSkuIdsClient from './getProductAndSkuIdsClient'
 
 export class Clients extends IOClients {
-  public get inventoryRestClient() {
-    return this.getOrSet('inventoryRestClient', InventoryRestClient)
+  public get getProductAndSkuIdsClient() {
+    return this.getOrSet('getProductAndSkuIdsClient', GetProductAndSkuIdsClient)
   }
 }
