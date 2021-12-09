@@ -1,10 +1,10 @@
 import type { InstanceOptions, IOContext } from '@vtex/api'
 import { ExternalClient } from '@vtex/api'
 
-export default class GetProductAndSkuIdsClient extends ExternalClient {
+export default class CatalogClient extends ExternalClient {
   constructor(context: IOContext, options?: InstanceOptions) {
     super(
-      `http://${context.account}.vtexcommercestable.com.br/api/catalog_system/pvt/products/GetProductAndSkuIds`,
+      `http://${context.account}.vtexcommercestable.com.br/api/catalog_system`,
       context,
       {
         ...options,
@@ -16,7 +16,7 @@ export default class GetProductAndSkuIdsClient extends ExternalClient {
     )
   }
 
-  public async listOfProductsAndSkus(categoryId: number) {
-    return this.http.getRaw(categoryId ? `?categoryId=${categoryId}` : ``)
+  public async getSku(skuId: number) {
+    return this.http.getRaw(`/pvt/sku/stockkeepingunitbyid/${skuId}`)
   }
 }

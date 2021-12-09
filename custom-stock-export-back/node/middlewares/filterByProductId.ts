@@ -8,7 +8,7 @@ export async function filterByProductId(
   const { productId } = ctx.state.body
   const { listOfProductsAndSkus } = ctx.state
 
-  if (productId) {
+  if (productId && listOfProductsAndSkus) {
     try {
       const filteredListOfProductsById = Object.keys(listOfProductsAndSkus.data)
         .filter((key) => key === productId)
@@ -20,9 +20,6 @@ export async function filterByProductId(
         }, {})
 
       ctx.state.filteredListOfProductsById = filteredListOfProductsById
-
-      ctx.status = 200
-      ctx.body = filteredListOfProductsById
     } catch (error) {
       console.info('error', error)
       ctx.status = 500
@@ -32,8 +29,6 @@ export async function filterByProductId(
     }
   } else {
     ctx.state.filteredListOfProductsById = listOfProductsAndSkus.data
-    ctx.status = 200
-    ctx.body = ctx.state.filteredListOfProductsById
   }
 
   await next()

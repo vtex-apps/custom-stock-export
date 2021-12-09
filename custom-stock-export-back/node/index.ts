@@ -5,6 +5,8 @@ import { Clients } from './clients'
 import { getBody } from './middlewares/getBody'
 import { getListOfProductsAndSkus } from './middlewares/getListOfProductsAndSkus'
 import { filterByProductId } from './middlewares/filterByProductId'
+import { getSkusData } from './middlewares/getSkusData'
+import { filterByProductName } from './middlewares/filterByProductName'
 import type { State } from './interfaces'
 
 const TIMEOUT_MS = 600000
@@ -44,7 +46,13 @@ export default new Service({
   routes: {
     // `status` is the route ID from service.json. It maps to an array of middlewares (or a single handler).
     export: method({
-      POST: [getBody, getListOfProductsAndSkus, filterByProductId],
+      POST: [
+        getBody,
+        getListOfProductsAndSkus,
+        filterByProductId,
+        getSkusData,
+        filterByProductName,
+      ],
     }),
   },
 })
