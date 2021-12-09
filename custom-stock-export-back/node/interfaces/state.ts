@@ -1,6 +1,11 @@
 import type { RecorderState } from '@vtex/api'
 
-import type { ExportBodyType, ListOfProductsAndSkusType, Sku } from '.'
+import type {
+  ExportBodyType,
+  ListOfProductsAndSkusType,
+  Sku,
+  SkuWithInventory,
+} from '.'
 
 export interface State extends RecorderState {
   body: ExportBodyType
@@ -8,4 +13,5 @@ export interface State extends RecorderState {
   filteredListOfProductsById: { [key: string]: number[] }
   skuList: Sku[]
   filteredListOfSkusByName: Sku[]
+  skuListWithInventory: SkuWithInventory[]
 }

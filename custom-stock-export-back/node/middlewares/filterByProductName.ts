@@ -15,9 +15,6 @@ export async function filterByProductName(
       )
 
       ctx.state.filteredListOfSkusByName = filteredListOfSkusByName
-
-      ctx.status = 200
-      ctx.body = filteredListOfSkusByName
     } catch (error) {
       console.info('error', error)
       ctx.status = 500
@@ -27,8 +24,6 @@ export async function filterByProductName(
     }
   } else {
     ctx.state.filteredListOfSkusByName = skuList
-    ctx.status = 200
-    ctx.body = ctx.state.filteredListOfSkusByName
   }
 
   await next()
