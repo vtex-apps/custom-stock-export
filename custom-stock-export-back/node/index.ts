@@ -8,6 +8,7 @@ import { filterByProductId } from './middlewares/filterByProductId'
 import { getSkusData } from './middlewares/getSkusData'
 import { filterByProductName } from './middlewares/filterByProductName'
 import { getInventory } from './middlewares/getInventory'
+import { filterByQuantity } from './middlewares/filterByQuantity'
 import type { State } from './interfaces'
 
 const TIMEOUT_MS = 600000
@@ -54,6 +55,7 @@ export default new Service({
         getSkusData,
         filterByProductName,
         getInventory,
+        filterByQuantity,
       ],
     }),
   },

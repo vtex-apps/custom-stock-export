@@ -8,7 +8,7 @@ export interface Balance {
   warehouseName: string
   totalQuantity: number
   reservedQuantity: number
-  available: number | string
+  availableQuantity: number
   hasUnlimitedQuantity: boolean
   timeToRefill: null
   dateOfSupplyUtc: null

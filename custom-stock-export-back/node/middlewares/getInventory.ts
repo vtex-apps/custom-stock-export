@@ -29,14 +29,14 @@ export async function getInventory(
               : balance.totalQuantity - balance.reservedQuantity
           */
 
-          const available =
+          const availableQuantity =
             balance.totalQuantity < 1000000
               ? balance.totalQuantity - balance.reservedQuantity
               : balance.totalQuantity
 
           const balanceAux = balance
 
-          balance.available = available
+          balance.availableQuantity = availableQuantity
 
           return balanceAux
         }
@@ -57,8 +57,6 @@ export async function getInventory(
     )
 
     ctx.state.skuListWithInventory = skuListWithInventory
-    ctx.status = 200
-    ctx.body = skuListWithInventory
   } catch (error) {
     console.info('error', error)
     ctx.status = 500
