@@ -5,44 +5,53 @@ export async function filterByProductName(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   next: () => Promise<any>
 ) {
-  const { productName, productNameOperator } = ctx.state.body
+  const { productName: bodyProductName } = ctx.state.body
   const { skuList } = ctx.state
 
-  if (productName && productNameOperator && skuList) {
-    try {
-      const condition = (
-        skuProductName: string,
-        productNameToCompare: string
-      ) => {
-        const skuProductNameLower = skuProductName.toLowerCase()
-        const productNameToCompareLower = productNameToCompare.toLowerCase()
+  if (bodyProductName) {
+    const {
+      value: productName,
+      operator: productNameOperator,
+    } = bodyProductName
 
-        if (productNameOperator === '=') {
-          return skuProductNameLower === productNameToCompareLower
+    if (productName && productNameOperator && skuList) {
+      try {
+        const condition = (
+          skuProductName: string,
+          productNameToCompare: string
+        ) => {
+          const skuProductNameLower = skuProductName.toLowerCase()
+          const productNameToCompareLower = productNameToCompare.toLowerCase()
+
+          if (productNameOperator === '=') {
+            return skuProductNameLower === productNameToCompareLower
+          }
+
+          if (productNameOperator === '!=') {
+            return skuProductNameLower !== productNameToCompareLower
+          }
+
+          if (productNameOperator === 'contains') {
+            return skuProductNameLower.includes(productNameToCompareLower)
+          }
+
+          return false
         }
 
-        if (productNameOperator === '!=') {
-          return skuProductNameLower !== productNameToCompareLower
-        }
+        const filteredListOfSkusByName = skuList.filter((sku) =>
+          condition(sku.ProductName, productName)
+        )
 
-        if (productNameOperator === 'contains') {
-          return skuProductNameLower.includes(productNameToCompareLower)
-        }
+        ctx.state.filteredListOfSkusByName = filteredListOfSkusByName
+      } catch (error) {
+        console.info('error', error)
+        ctx.status = 500
+        ctx.body = error
 
-        return false
+        return
       }
-
-      const filteredListOfSkusByName = skuList.filter((sku) =>
-        condition(sku.ProductName, productName)
-      )
-
-      ctx.state.filteredListOfSkusByName = filteredListOfSkusByName
-    } catch (error) {
-      console.info('error', error)
-      ctx.status = 500
-      ctx.body = error
-
-      return
+    } else {
+      ctx.state.filteredListOfSkusByName = skuList
     }
   } else {
     ctx.state.filteredListOfSkusByName = skuList

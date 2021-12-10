@@ -1,7 +1,11 @@
 export interface ExportBodyType {
   categoryId: number
-  productId: string
-  productIdOperator: string
-  productName: string
-  productNameOperator: string
+  productId: {
+    value: string
+    operator: string
+  }
+  productName: {
+    value: string
+    operator: string
+  }
 }
