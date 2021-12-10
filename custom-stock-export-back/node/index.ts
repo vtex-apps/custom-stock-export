@@ -8,6 +8,7 @@ import { filterByProductId } from './middlewares/filterByProductId'
 import { getSkusData } from './middlewares/getSkusData'
 import { filterByProductName } from './middlewares/filterByProductName'
 import { getInventory } from './middlewares/getInventory'
+import { filterByWarehouseIds } from './middlewares/filterByWarehouseIds'
 import { filterByQuantity } from './middlewares/filterByQuantity'
 import type { State } from './interfaces'
 
@@ -55,6 +56,7 @@ export default new Service({
         getSkusData,
         filterByProductName,
         getInventory,
+        filterByWarehouseIds,
         filterByQuantity,
       ],
     }),

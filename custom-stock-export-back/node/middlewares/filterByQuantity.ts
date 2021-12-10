@@ -8,9 +8,9 @@ export async function filterByQuantity(
 ) {
   const { quantity, reservedQuantity, availableQuantity } = ctx.state.body
 
-  const { skuListWithInventory } = ctx.state
+  const { filteredListWithInventoryByWarehouseIds } = ctx.state
 
-  ctx.state.filteredListWithInventoryByQuantity = skuListWithInventory
+  ctx.state.filteredListWithInventoryByQuantity = filteredListWithInventoryByWarehouseIds
   const condition = (
     skuQuantity: number,
     min: number,

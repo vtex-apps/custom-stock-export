@@ -14,5 +14,6 @@ export interface State extends RecorderState {
   skuList: Sku[]
   filteredListOfSkusByName: Sku[]
   skuListWithInventory: SkuWithInventory[]
+  filteredListWithInventoryByWarehouseIds: SkuWithInventory[]
   filteredListWithInventoryByQuantity: SkuWithInventory[]
 }
