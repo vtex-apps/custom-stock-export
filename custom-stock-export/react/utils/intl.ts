@@ -45,7 +45,7 @@ export const commonMessages = defineMessages({
 })
 
 export const columnsMessages = defineMessages({
-  lastUpdate: { id: `${prefix}columns.last-update` },
+  totalQuantity: { id: `${prefix}columns.totalQuantity` },
   reserved: { id: `${prefix}columns.reserved` },
   available: { id: `${prefix}columns.available` },
   warehouse: { id: `${prefix}columns.warehouse` },

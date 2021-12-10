@@ -5,13 +5,25 @@ export async function filterByProductId(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   next: () => Promise<any>
 ) {
-  const { productId } = ctx.state.body
+  const { productId, productIdOperator } = ctx.state.body
   const { listOfProductsAndSkus } = ctx.state
 
-  if (productId && listOfProductsAndSkus) {
+  if (productId && productIdOperator && listOfProductsAndSkus) {
     try {
+      const condition = (key: string, id: string) => {
+        if (productIdOperator === '=') {
+          return key === id
+        }
+
+        if (productIdOperator === '!=') {
+          return key !== id
+        }
+
+        return false
+      }
+
       const filteredListOfProductsById = Object.keys(listOfProductsAndSkus.data)
-        .filter((key) => key === productId)
+        .filter((key) => condition(key, productId))
         .reduce((obj, key) => {
           return {
             ...obj,

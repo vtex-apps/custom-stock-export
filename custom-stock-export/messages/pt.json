@@ -3,7 +3,7 @@
   "admin/admin.app.navigation.search.kws": "personalizado, custom, estoque, exportação, export",
   "admin/admin.app.custom-stock-export.pageTitle": "Exportação de estoque personalizado",
   "admin/admin.app.custom-stock-export.exportButton": "Exportar",
-  "admin/admin.app.custom-stock-export.columns.last-update": "Última atualização",
+  "admin/admin.app.custom-stock-export.columns.totalQuantity": "Quantidade total",
   "admin/admin.app.custom-stock-export.columns.reserved": "Reservados",
   "admin/admin.app.custom-stock-export.columns.available": "Disponível",
   "admin/admin.app.custom-stock-export.columns.warehouse": "Estoque",

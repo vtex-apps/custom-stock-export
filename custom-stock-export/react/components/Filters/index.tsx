@@ -42,6 +42,21 @@ export default function Filters() {
         label: isNot,
         value: '!=',
         object: (props: any) => <SimpleInputObject {...props} />,
+      }
+    ]
+  }
+
+  function simpleInputVerbsWithContains() {
+    return [
+      {
+        label: is,
+        value: '=',
+        object: (props: any) => <SimpleInputObject {...props} />,
+      },
+      {
+        label: isNot,
+        value: '!=',
+        object: (props: any) => <SimpleInputObject {...props} />,
       },
       {
         label: contains,
@@ -109,7 +124,7 @@ export default function Filters() {
               }
 
               return `${
-                st.verb === '=' ? is : st.verb === '!=' ? isNot : contains
+                st.verb === '=' ? is : isNot
               } ${st.object}`
             },
             verbs: simpleInputVerbs(),
@@ -126,7 +141,7 @@ export default function Filters() {
                 st.verb === '=' ? is : st.verb === '!=' ? isNot : contains
               } ${st.object}`
             },
-            verbs: simpleInputVerbs(),
+            verbs: simpleInputVerbsWithContains(),
           },
           ...warehouseFilter.options,
           ...quantityFilters.options,

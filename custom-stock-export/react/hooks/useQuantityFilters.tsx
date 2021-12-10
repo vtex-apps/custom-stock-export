@@ -115,7 +115,7 @@ export function useQuantityFilters(initialState?: QuantityFilters) {
   const options = useMemo(
     () => ({
       quantity: createQuantityFilterOption({
-        label: intl.formatMessage(columnsMessages.lastUpdate),
+        label: intl.formatMessage(columnsMessages.totalQuantity),
         labelGender: 'female',
       }),
       reservedQuantity: createQuantityFilterOption({

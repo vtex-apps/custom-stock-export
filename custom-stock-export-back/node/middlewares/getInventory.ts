@@ -23,10 +23,16 @@ export async function getInventory(
 
       skuInventoryDataWithAvailable.balance = skuInventoryData.balance.map(
         (balance: Balance) => {
-          const available =
+          /* const available =
             balance.totalQuantity >= 1000000
               ? 'Inf'
               : balance.totalQuantity - balance.reservedQuantity
+          */
+
+          const available =
+            balance.totalQuantity < 1000000
+              ? balance.totalQuantity - balance.reservedQuantity
+              : balance.totalQuantity
 
           const balanceAux = balance
 

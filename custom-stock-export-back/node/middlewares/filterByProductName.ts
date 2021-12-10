@@ -5,13 +5,35 @@ export async function filterByProductName(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   next: () => Promise<any>
 ) {
-  const { productName } = ctx.state.body
+  const { productName, productNameOperator } = ctx.state.body
   const { skuList } = ctx.state
 
-  if (productName && skuList) {
+  if (productName && productNameOperator && skuList) {
     try {
+      const condition = (
+        skuProductName: string,
+        productNameToCompare: string
+      ) => {
+        const skuProductNameLower = skuProductName.toLowerCase()
+        const productNameToCompareLower = productNameToCompare.toLowerCase()
+
+        if (productNameOperator === '=') {
+          return skuProductNameLower === productNameToCompareLower
+        }
+
+        if (productNameOperator === '!=') {
+          return skuProductNameLower !== productNameToCompareLower
+        }
+
+        if (productNameOperator === 'contains') {
+          return skuProductNameLower.includes(productNameToCompareLower)
+        }
+
+        return false
+      }
+
       const filteredListOfSkusByName = skuList.filter((sku) =>
-        sku.ProductName.toLowerCase().includes(productName.toLowerCase())
+        condition(sku.ProductName, productName)
       )
 
       ctx.state.filteredListOfSkusByName = filteredListOfSkusByName

@@ -3,7 +3,7 @@
   "admin/admin.app.navigation.search.kws": "personalizado, custom, stock, exportación, export",
   "admin/admin.app.custom-stock-export.pageTitle": "Custom Stock Export",
   "admin/admin.app.custom-stock-export.exportButton": "Exportar",
-  "admin/admin.app.custom-stock-export.columns.last-update": "Última actualización",
+  "admin/admin.app.custom-stock-export.columns.totalQuantity": "Cantidad Total",
   "admin/admin.app.custom-stock-export.columns.reserved": "Reservado",
   "admin/admin.app.custom-stock-export.columns.available": "Disponible",
   "admin/admin.app.custom-stock-export.columns.warehouse": "Almacén",

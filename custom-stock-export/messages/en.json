@@ -3,7 +3,7 @@
   "admin/admin.app.navigation.search.kws": "custom, stock, export",
   "admin/admin.app.custom-stock-export.pageTitle": "Custom Stock Export",
   "admin/admin.app.custom-stock-export.exportButton": "Export",
-  "admin/admin.app.custom-stock-export.columns.last-update": "Last update",
+  "admin/admin.app.custom-stock-export.columns.totalQuantity": "Total Quantity",
   "admin/admin.app.custom-stock-export.columns.reserved": "Reserved",
   "admin/admin.app.custom-stock-export.columns.available": "Available",
   "admin/admin.app.custom-stock-export.columns.warehouse": "Warehouse",
