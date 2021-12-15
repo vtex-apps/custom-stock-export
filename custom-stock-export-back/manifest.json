@@ -46,5 +46,16 @@
       "name": "colossus-write-logs"
     }
   ],
-  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema",
+  "settingsSchema": {
+    "title": "VTEX Proxy Mailing Flow",
+    "type": "object",
+    "properties": {
+      "customStockExportTemplate": {
+        "title": "Custom Stock Export Mailing Template Name",
+        "description": "The name at the end of the message-center template url.",
+        "type": "string"
+      }
+    }
+  }
 }

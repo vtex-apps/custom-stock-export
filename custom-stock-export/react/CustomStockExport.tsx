@@ -1,12 +1,17 @@
 import React from 'react'
-import { Layout, PageHeader, PageBlock } from 'vtex.styleguide'
+import { Layout, PageHeader, PageBlock, Button } from 'vtex.styleguide'
 import { useIntl } from 'react-intl'
-// import { useVtexLogger } from 'vtexarg.vtex-logger-react'
 import { appMessages } from './utils/intl'
 import Filters from './components/Filters'
+
+import { useLoggerVtex as useLoggerVtexApp } from 'vtexarg.vtex-logger-react'
+
 export default function CustomStockExport() {
+  const { useLoggerVtex } = useLoggerVtexApp
+  const { useLog } = useLoggerVtex()
+
   const intl = useIntl()
-  /*const objTest = {
+  const objTest = {
     id: '1',
     name: 'test react',
     description: 'test react',
@@ -16,17 +21,16 @@ export default function CustomStockExport() {
     barcode: '1',
     brand: '1',
     category: '1',
-  }*/
-  //const { useLog } = useVtexLogger()
+  }
 
-  /*const handleClick = async () =>{
+  const handleClick = async () =>{
     const message = 'testReact'
     try {
       await useLog({ message: message, detail: objTest })
     } catch (error) {
       console.error(error)
     }
-  }*/
+  }
   return (
     <Layout
       fullWidth
@@ -36,6 +40,7 @@ export default function CustomStockExport() {
     >
       <PageBlock variation="full">
         <Filters />
+        <Button onClick={handleClick}/>
       </PageBlock>
     </Layout>
   )

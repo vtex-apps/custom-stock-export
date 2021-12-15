@@ -17,6 +17,9 @@
     "vtex.logistics-carrier-commons": "0.x",
     "vtex.logistics-carrier-graphql": "0.x"
   },
+  "peerDependencies": {
+    "vtexarg.vtex-logger-react": "0.x"
+  },
   "billingOptions": {
     "support": {
       "url": "https://support.vtex.com/hc/requests"

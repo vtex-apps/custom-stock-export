@@ -3,5 +3,5 @@ export { ListOfProductsAndSkusType } from './listOfProductsAndSkus'
 export { Sku } from './sku'
 export { Inventory } from './inventory'
 export { SkuWithInventory } from './skuWithInventory'
-
+export { BodyEmail, JsonEmailData } from './bodyEmail'
 export { State } from './state'

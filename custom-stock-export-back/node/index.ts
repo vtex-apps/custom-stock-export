@@ -10,6 +10,7 @@ import { filterByProductName } from './middlewares/filterByProductName'
 import { getInventory } from './middlewares/getInventory'
 import { filterByWarehouseIds } from './middlewares/filterByWarehouseIds'
 import { filterByQuantity } from './middlewares/filterByQuantity'
+import { sendEmail } from './middlewares/sendEmail'
 import type { State } from './interfaces'
 
 const TIMEOUT_MS = 600000
@@ -58,6 +59,7 @@ export default new Service({
         getInventory,
         filterByWarehouseIds,
         filterByQuantity,
+        sendEmail,
       ],
     }),
   },
