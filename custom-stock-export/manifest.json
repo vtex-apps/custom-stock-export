@@ -1,7 +1,7 @@
 {
   "vendor": "vtexarg",
   "name": "custom-stock-export",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "title": "Custom Stock Export",
   "description": "Custom Stock Export",
   "builders": {
