@@ -4,29 +4,28 @@ import { useIntl } from 'react-intl'
 import { appMessages } from './utils/intl'
 import Filters from './components/Filters'
 
-import { useLoggerVtex as useLoggerVtexApp } from 'vtexarg.vtex-logger-react'
+import { useLoggerVtex } from 'vtex.vtex-logger-react'
 
 export default function CustomStockExport() {
-  const { useLoggerVtex } = useLoggerVtexApp
   const { useLog } = useLoggerVtex()
 
   const intl = useIntl()
   const objTest = {
     id: '1',
-    name: 'test react',
-    description: 'test react',
-    price: '1',
+    name: 'Test Name',
+    description: 'Test Description',
+    price: '100',
     quantity: '1',
-    sku: '1',
-    barcode: '1',
-    brand: '1',
-    category: '1',
+    brand: 'Test Brand',
+    category: 'Test Category',
   }
 
   const handleClick = async () =>{
-    const message = 'testReact'
+    const appName = 'my-app'
+    const message = 'Test log'
     try {
-      await useLog({ message: message, detail: objTest })
+      const response = await useLog({ app: appName, message: message, detail: objTest })
+      console.log('response', response)
     } catch (error) {
       console.error(error)
     }
@@ -40,7 +39,9 @@ export default function CustomStockExport() {
     >
       <PageBlock variation="full">
         <Filters />
-        <Button onClick={handleClick}/>
+        <Button onClick={handleClick}>
+          Log
+        </Button>
       </PageBlock>
     </Layout>
   )

@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /Users/germanbonacchi/.config/yarn/global/node_modules/yarn/bin/yarn.js --non-interactive --ignore-engines
+  /usr/local/bin/node /Users/germanbonacchi/.config/yarn/global/node_modules/yarn/bin/yarn.js --force --non-interactive --ignore-engines
 
 PATH: 
   /Users/germanbonacchi/.yarn/bin:/Users/germanbonacchi/.config/yarn/global/node_modules/.bin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/germanbonacchi/.yarn/bin:/Users/germanbonacchi/.config/yarn/global/node_modules/.bin:/Library/Frameworks/Python.framework/Versions/3.9/bin
@@ -14,23 +14,15 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: http://vtex.vtexassets.com/_v/public/typings/v1/vtexarg.vtex-logger-react@0.0.1/public/@types/vtexarg.vtex-logger-react: Request failed "500 Internal Server Error"
-      at ResponseError.ExtendableBuiltin (/Users/germanbonacchi/.config/yarn/global/node_modules/yarn/lib/cli.js:696:66)
-      at new ResponseError (/Users/germanbonacchi/.config/yarn/global/node_modules/yarn/lib/cli.js:802:124)
-      at Request.<anonymous> (/Users/germanbonacchi/.config/yarn/global/node_modules/yarn/lib/cli.js:67058:16)
-      at Request.emit (events.js:315:20)
-      at Request.module.exports.Request.onRequestResponse (/Users/germanbonacchi/.config/yarn/global/node_modules/yarn/lib/cli.js:141539:10)
-      at ClientRequest.emit (events.js:315:20)
-      at HTTPParser.parserOnIncomingClient (_http_client.js:641:27)
-      at HTTPParser.parserOnHeadersComplete (_http_common.js:126:17)
-      at Socket.socketOnData (_http_client.js:509:22)
-      at Socket.emit (events.js:315:20)
+  Error: read ECONNABORTED
+      at TLSWrap.onStreamRead (internal/stream_base_commons.js:209:20)
 
 npm manifest: 
   {
     "name": "custom-stock-export",
     "version": "0.0.12",
     "devDependencies": {
+      "@types/lodash.debounce": "^4.0.6",
       "@types/node": "^11.12.1",
       "@types/ramda": "^0.27.57",
       "@types/react": "^16.8.10",
@@ -43,14 +35,14 @@ npm manifest:
       "react-dom": "^17.0.1",
       "react-intl": "^5.20.10",
       "typescript": "3.9.7",
-      "@types/lodash.debounce": "^4.0.6",
-      "vtex.admin-inventory": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.admin-inventory@0.46.0/public/@types/vtex.admin-inventory",
+      "vtex.catalog-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.catalog-graphql@1.97.0/public/@types/vtex.catalog-graphql",
       "vtex.inventory-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.inventory-graphql@0.18.2/public/@types/vtex.inventory-graphql",
-      "vtex.logistics-carrier-commons": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.logistics-carrier-commons@0.66.0/public/@types/vtex.logistics-carrier-commons",
+      "vtex.logistics-carrier-commons": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.logistics-carrier-commons@0.67.1/public/@types/vtex.logistics-carrier-commons",
       "vtex.logistics-carrier-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.logistics-carrier-graphql@0.41.0/public/@types/vtex.logistics-carrier-graphql",
       "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.132.3/public/@types/vtex.render-runtime",
       "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.145.2/public/@types/vtex.styleguide",
-      "vtexarg.vtex-logger-react": "http://vtex.vtexassets.com/_v/public/typings/v1/vtexarg.vtex-logger-react@0.0.1/public/@types/vtexarg.vtex-logger-react"
+      "vtexarg.custom-stock-export": "https://customstockexport--gbonacchi.myvtex.com/_v/private/typings/linked/v1/vtexarg.custom-stock-export@0.0.1+build1639592743/public/@types/vtexarg.custom-stock-export",
+      "vtexarg.vtex-logger-react": "https://customstockexport--gbonacchi.myvtex.com/_v/private/typings/linked/v1/vtexarg.vtex-logger-react@0.0.1+build1639592716/public/@types/vtexarg.vtex-logger-react"
     },
     "dependencies": {
       "@types/faker": "^4.1.5",
