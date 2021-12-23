@@ -21,7 +21,7 @@ export default function CustomStockExport() {
   }
 
   const handleClick = async () =>{
-    const appName = 'my-app'
+    const appName = 'custom-stock-export'
     const message = 'Test log'
     try {
       const response = await useLog({ app: appName, message: message, detail: objTest })

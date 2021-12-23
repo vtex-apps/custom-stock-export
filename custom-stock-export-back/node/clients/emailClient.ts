@@ -1,26 +1,25 @@
-import type { InstanceOptions, IOContext, IOResponse } from '@vtex/api'
-import { ExternalClient } from '@vtex/api'
+import type { InstanceOptions, IOContext } from '@vtex/api'
+import { JanusClient } from '@vtex/api'
+import { pipe } from 'ramda'
 
 import type { BodyEmail } from '../interfaces'
 
-export default class EmailClient extends ExternalClient {
+const withCookieAsHeader = (context: IOContext) => (
+  options: InstanceOptions
+): InstanceOptions => ({
+  ...options,
+  headers: {
+    VtexIdclientAutCookie: context.authToken,
+    ...(options?.headers ?? {}),
+  },
+})
+
+export default class EmailClient extends JanusClient {
   constructor(context: IOContext, options?: InstanceOptions) {
-    super(
-      `http://${context.account}.vtexcommercestable.com.br/api/mail-service/pvt/sendmail`,
-      context,
-      {
-        ...options,
-        headers: {
-          VtexIdClientAutCookie: context.authToken,
-        },
-      }
-    )
+    super(context, options && pipe(withCookieAsHeader(context))(options))
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  public async sendEmail(body: BodyEmail): Promise<IOResponse<String>> {
-    console.info('sendEmail client', body)
-
-    return this.http.postRaw('', body)
+  public async sendEmail(body: BodyEmail): Promise<string> {
+    return this.http.post(`/api/mail-service/pvt/sendmail`, body)
   }
 }

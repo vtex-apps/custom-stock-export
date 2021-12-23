@@ -34,10 +34,11 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
 
     const sendEmailResponse = await emailClient.sendEmail(bodyEmail)
 
-    console.log(sendEmailResponse.data)
+    console.log(sendEmailResponse)
     ctx.status = 200
     ctx.body = { data: 'Send email succesfully' }
   } catch (err) {
+    console.error('err', err)
     ctx.status = 500
     ctx.body = { error: 'Error sending email', message: err }
   }

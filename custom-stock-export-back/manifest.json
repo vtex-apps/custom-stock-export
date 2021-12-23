@@ -31,6 +31,13 @@
       }
     },
     {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "portal.vtexcommercestable.com.br",
+        "path": "/api/mail-service/pvt/*"
+      }
+    },
+    {
       "name": "ProdutoForm.aspx"
     },
     {
@@ -38,6 +45,9 @@
     },
     {
       "name": "LogisticsAdmin"
+    },
+    {
+      "name": "send-message"
     },
     {
       "name": "colossus-fire-event"
