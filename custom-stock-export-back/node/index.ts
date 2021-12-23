@@ -10,6 +10,7 @@ import { filterByProductName } from './middlewares/filterByProductName'
 import { getInventory } from './middlewares/getInventory'
 import { filterByWarehouseIds } from './middlewares/filterByWarehouseIds'
 import { filterByQuantity } from './middlewares/filterByQuantity'
+import { createCSV } from './middlewares/createCSV'
 import { sendEmail } from './middlewares/sendEmail'
 import type { State } from './interfaces'
 
@@ -59,6 +60,7 @@ export default new Service({
         getInventory,
         filterByWarehouseIds,
         filterByQuantity,
+        createCSV,
         sendEmail,
       ],
     }),

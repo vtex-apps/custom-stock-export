@@ -19,16 +19,21 @@ export default function CustomStockExport() {
     brand: 'Test Brand',
     category: 'Test Category',
   }
-
-  const handleClick = async () =>{
+  
+  const handleClick = async () => {
     const appName = 'custom-stock-export'
     const message = 'Test log'
     try {
-      const response = await useLog({ app: appName, message: message, detail: objTest })
+      const response = await useLog({
+        app: appName,
+        message: message,
+        detail: objTest,
+      })
       console.log('response', response)
     } catch (error) {
       console.error(error)
     }
+    
   }
   return (
     <Layout
@@ -39,9 +44,7 @@ export default function CustomStockExport() {
     >
       <PageBlock variation="full">
         <Filters />
-        <Button onClick={handleClick}>
-          Log
-        </Button>
+        <Button onClick={handleClick}>Log</Button>
       </PageBlock>
     </Layout>
   )

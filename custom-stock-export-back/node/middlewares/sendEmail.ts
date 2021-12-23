@@ -10,7 +10,7 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
   } = ctx
 
   console.log('sendEmail')
-  // const { filteredListWithInventoryByQuantity } = ctx.state
+  const { filteredListWithInventoryByQuantity } = ctx.state
 
   // console.log('filteredListWithInventoryByQuantity', filteredListWithInventoryByQuantity )
 
@@ -36,7 +36,10 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
 
     console.log(sendEmailResponse)
     ctx.status = 200
-    ctx.body = { data: 'Send email succesfully' }
+    ctx.body = {
+      data: 'Send email succesfully',
+      json: filteredListWithInventoryByQuantity,
+    }
   } catch (err) {
     console.error('err', err)
     ctx.status = 500
