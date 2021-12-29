@@ -5,6 +5,7 @@ import CatalogClient from './catalogClient'
 import InventoryClient from './inventoryClient'
 import EmailClient from './emailClient'
 import FileClient from './fileClient'
+import FileAriClient from './fileAriClient'
 
 export class Clients extends IOClients {
   public get getProductAndSkuIdsClient() {
@@ -25,5 +26,9 @@ export class Clients extends IOClients {
 
   public get fileClient() {
     return this.getOrSet('fileClient', FileClient)
+  }
+
+  public get fileAriClient() {
+    return this.getOrSet('fileAriClient', FileAriClient)
   }
 }

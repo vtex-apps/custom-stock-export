@@ -4,7 +4,7 @@ import { ExternalClient } from '@vtex/api'
 export default class FileClient extends ExternalClient {
   constructor(context: IOContext, options?: InstanceOptions) {
     super(
-      `http://${context.account}.myvtex.com/_v/file-manager-rest/uploadFile`,
+      `http://customstockexport--${context.account}.myvtex.com/_v/file-manager-rest/uploadFile`,
       context,
       {
         ...options,

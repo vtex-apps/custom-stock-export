@@ -21,6 +21,7 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
     )
 
     console.log('customStockExportTemplate', customStockExportTemplate)
+    console.log(ctx.state.csvFile2)
 
     const bodyEmail: BodyEmail = {
       providerName: 'no-reply',
@@ -28,7 +29,7 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
       jsonData: {
         to: ['german.bonacchi@vtex.com.br'],
         tradingName: 'customStockExport Test',
-        downloadLink: 'https://www.google.com',
+        downloadLink: ctx.state.csvFile2,
       },
     }
 

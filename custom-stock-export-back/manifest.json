@@ -1,12 +1,15 @@
 {
-  "name": "custom-stock-export-back",
+  "name": "custom-stock-e-b",
   "vendor": "vtexarg",
   "version": "0.0.2",
   "title": "Custom Stock Export Back",
   "description": "Custom Stock Export Back",
   "mustUpdateAt": "2018-01-04",
   "categories": [],
-  "dependencies": {},
+  "dependencies": {
+    "vtex.file-manager-graphql": "0.x",
+    "vtex.file-manager": "0.x"
+  },
   "builders": {
     "node": "6.x",
     "docs": "0.x"
@@ -16,7 +19,9 @@
       "url": "https://support.vtex.com/hc/requests"
     },
     "type": "free",
-    "availableCountries": ["*"]
+    "availableCountries": [
+      "*"
+    ]
   },
   "scripts": {
     "prereleasy": "bash lint.sh"
@@ -50,10 +55,20 @@
       "name": "send-message"
     },
     {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "httpstat.us",
+        "path": "*"
+      }
+    },
+    {
       "name": "colossus-fire-event"
     },
     {
       "name": "colossus-write-logs"
+    },
+    {
+      "name": "vtex.file-manager:file-manager-read-write"
     }
   ],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema",
