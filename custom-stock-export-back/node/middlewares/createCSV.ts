@@ -29,6 +29,8 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
 
     const newJsonFiltered = filterColumns(columns, newJson)
 
+    ctx.state.jsonFilteredColums = newJsonFiltered
+
     const csv = jsonToCsv(newJsonFiltered)
 
     const name = 'csvStock.csv'
@@ -44,7 +46,7 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
     const responseFileClient = await fileClient.saveFile(
       incomingFile,
       csvFile.stream(),
-      'CV',
+      'cf',
       name
     )
 

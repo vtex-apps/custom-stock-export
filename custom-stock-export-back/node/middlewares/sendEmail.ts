@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import type { BodyEmail } from '../interfaces'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -8,7 +6,7 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
     clients: { emailClient },
   } = ctx
 
-  const { filteredListWithInventoryByQuantity } = ctx.state
+  const { jsonFilteredColums } = ctx.state
 
   try {
     const appId = process.env.VTEX_APP_ID ? process.env.VTEX_APP_ID : ''
@@ -33,7 +31,7 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
     ctx.status = 200
     ctx.body = {
       data: 'Send email succesfully',
-      json: filteredListWithInventoryByQuantity,
+      json: jsonFilteredColums,
     }
   } catch (err) {
     console.error('err', err)
