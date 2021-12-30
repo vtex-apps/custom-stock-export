@@ -1,11 +1,11 @@
 export interface ExportBodyType {
-  categoryId: number
-  productId: ProductFilterType
-  productName: ProductFilterType
-  warehouseIds: string[]
-  quantity: QuantityFilterType
-  reservedQuantity: QuantityFilterType
-  availableQuantity: QuantityFilterType
+  categoryId?: number
+  productId?: ProductFilterType
+  productName?: ProductFilterType
+  warehouseIds?: string[]
+  quantity?: QuantityFilterType
+  reservedQuantity?: QuantityFilterType
+  availableQuantity?: QuantityFilterType
 }
 
 interface ProductFilterType {

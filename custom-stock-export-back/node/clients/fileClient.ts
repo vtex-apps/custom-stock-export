@@ -47,7 +47,6 @@ export default class FileManager extends AppClient {
         name,
       }
     } catch (e) {
-      console.log('e', e)
       throw new Error(e)
     }
   }

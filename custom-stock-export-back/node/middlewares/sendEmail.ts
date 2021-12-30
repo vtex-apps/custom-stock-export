@@ -45,7 +45,6 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
       json: jsonFilteredColums,
     }
   } catch (err) {
-    console.error('err', err)
     ctx.status = 500
     ctx.body = { error: 'Error sending email', message: err }
   }

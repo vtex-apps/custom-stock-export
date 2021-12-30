@@ -54,7 +54,6 @@ export async function filterByProductName(
           LogLevel.Info
         )
       } catch (error) {
-        console.info('error', error)
         ctx.status = 500
         ctx.body = error
 

@@ -42,7 +42,7 @@ export default function Filters() {
         label: isNot,
         value: '!=',
         object: (props: any) => <SimpleInputObject {...props} />,
-      }
+      },
     ]
   }
 
@@ -66,9 +66,63 @@ export default function Filters() {
     ]
   }
 
-  const onclickExport = () => {
-    console.info('onclickExport')
-    console.info('statements', statements)
+  const onclickExport = async () => {
+    let json: ExportBodyType = {}
+
+    statements.forEach((statement: any) => {
+      if (statement.subject === 'categoryId') {
+        json.categoryId = statement.object.value
+      }
+
+      if (statement.subject === 'productId') {
+        json.productId = { value: statement.object, operator: statement.verb }
+      }
+
+      if (statement.subject === 'productName') {
+        json.productId = { value: statement.object, operator: statement.verb }
+      }
+
+      if (statement.subject === 'warehouseIds') {
+        const warehouseIds = []
+        for (let [key, _value] of statement.object.entries()) {
+          warehouseIds.push(key)
+        }
+        json.warehouseIds = warehouseIds
+      }
+
+      if (statement.subject === 'quantity') {
+        json.quantity = {
+          min: statement.object.min,
+          max: statement.object.max,
+          operator: statement.verb,
+        }
+      }
+
+      if (statement.subject === 'reservedQuantity') {
+        json.quantity = {
+          min: statement.object.min,
+          max: statement.object.max,
+          operator: statement.verb,
+        }
+      }
+
+      if (statement.subject === 'availableQuantity') {
+        json.quantity = {
+          min: statement.object.min,
+          max: statement.object.max,
+          operator: statement.verb,
+        }
+      }
+    })
+    console.log('json', json)
+    const response = await fetch('/v1/stock/export', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(json),
+    })
+    console.info('response', response)
   }
 
   const filter = { ...warehouseFilter.filter, ...quantityFilters.filter }
@@ -123,9 +177,7 @@ export default function Filters() {
                 return any
               }
 
-              return `${
-                st.verb === '=' ? is : isNot
-              } ${st.object}`
+              return `${st.verb === '=' ? is : isNot} ${st.object}`
             },
             verbs: simpleInputVerbs(),
           },
@@ -163,55 +215,30 @@ function SimpleInputObject({ value, onChange }: any) {
   )
 }
 
-// function StatusSelectorObject({ value, onChange }: any) {
-//   const initialValue = {
-//     'Window to cancelation': true,
-//     Canceling: true,
-//     Canceled: true,
-//     'Payment pending': true,
-//     'Payment approved': true,
-//     'Ready for handling': true,
-//     'Handling shipping': true,
-//     'Ready for invoice': true,
-//     Invoiced: true,
-//     Complete: true,
-//     ...(value || {}),
-//   }
-
-//   const toggleValueByKey = (key: any) => {
-//     return {
-//       ...(value || initialValue),
-//       [key]: value ? !value[key] : false,
-//     }
-//   }
-
-//   return (
-//     <div>
-//       {Object.keys(initialValue).map((opt, index) => {
-//         return (
-//           <div className="mb3" key={`class-statment-object-${opt}-${index}`}>
-//             <Checkbox
-//               checked={value ? value[opt] : initialValue[opt]}
-//               id={`status-${opt}`}
-//               label={opt}
-//               name="status-checkbox-group"
-//               onChange={() => {
-//                 const newValue = toggleValueByKey(`${opt}`)
-
-//                 onChange(newValue)
-//               }}
-//               value={opt}
-//             />
-//           </div>
-//         )
-//       })}
-//     </div>
-//   )
-// }
-
 interface StatementObjectProps<T, U = SelectOption | null> {
   value: T
   onChange: (value: U) => void
   error?: ApolloError
   keepValueInput?: boolean
+}
+
+interface ExportBodyType {
+  categoryId?: number
+  productId?: ProductFilterType
+  productName?: ProductFilterType
+  warehouseIds?: string[]
+  quantity?: QuantityFilterType
+  reservedQuantity?: QuantityFilterType
+  availableQuantity?: QuantityFilterType
+}
+
+interface ProductFilterType {
+  value: string
+  operator: string
+}
+
+interface QuantityFilterType {
+  min: number
+  max: number
+  operator: string
 }

@@ -27,7 +27,6 @@ export async function filterByWarehouseIds(
 
       ctx.state.filteredListWithInventoryByWarehouseIds = skusFilteredByWarehouseIds
     } catch (error) {
-      console.info('error', error)
       ctx.status = 500
       ctx.body = error
 
