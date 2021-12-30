@@ -1,4 +1,4 @@
-// import type { FilteredListOfProductsByIdType } from '../interfaces'
+import { LogLevel } from '@vtex/api'
 
 export async function filterByProductId(
   ctx: Context,
@@ -37,6 +37,15 @@ export async function filterByProductId(
           }, {})
 
         ctx.state.filteredListOfProductsById = filteredListOfProductsById
+        ctx.vtex.logger.log(
+          {
+            message: 'filterByProductId',
+            detail: {
+              filteredListOfProductsById,
+            },
+          },
+          LogLevel.Info
+        )
       } catch (error) {
         console.info('error', error)
         ctx.status = 500
@@ -46,9 +55,27 @@ export async function filterByProductId(
       }
     } else {
       ctx.state.filteredListOfProductsById = listOfProductsAndSkus.data
+      ctx.vtex.logger.log(
+        {
+          message: 'filterByProductId',
+          detail: {
+            filteredListOfProductsById: listOfProductsAndSkus.data,
+          },
+        },
+        LogLevel.Info
+      )
     }
   } else {
     ctx.state.filteredListOfProductsById = listOfProductsAndSkus.data
+    ctx.vtex.logger.log(
+      {
+        message: 'filterByProductId',
+        detail: {
+          filteredListOfProductsById: listOfProductsAndSkus.data,
+        },
+      },
+      LogLevel.Info
+    )
   }
 
   await next()

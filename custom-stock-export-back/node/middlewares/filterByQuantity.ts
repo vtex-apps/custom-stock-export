@@ -1,4 +1,6 @@
 /* eslint-disable max-params */
+import { LogLevel } from '@vtex/api'
+
 import type { SkuWithInventory } from '../interfaces'
 
 export async function filterByQuantity(
@@ -87,6 +89,15 @@ export async function filterByQuantity(
     )
 
     ctx.state.filteredListWithInventoryByQuantity = skusFilteredByTotalQuantity
+    ctx.vtex.logger.log(
+      {
+        message: 'filterByQuantity - totalQuantity',
+        detail: {
+          filteredListWithInventoryByQuantity: skusFilteredByTotalQuantity,
+        },
+      },
+      LogLevel.Info
+    )
   }
 
   if (reservedQuantity) {
@@ -104,6 +115,16 @@ export async function filterByQuantity(
     )
 
     ctx.state.filteredListWithInventoryByQuantity = skusFilteredByTotalQuantity
+
+    ctx.vtex.logger.log(
+      {
+        message: 'filterByQuantity - reservedQuantity',
+        detail: {
+          filteredListWithInventoryByQuantity: skusFilteredByTotalQuantity,
+        },
+      },
+      LogLevel.Info
+    )
   }
 
   if (availableQuantity) {
@@ -121,6 +142,15 @@ export async function filterByQuantity(
     )
 
     ctx.state.filteredListWithInventoryByQuantity = skusFilteredByTotalQuantity
+    ctx.vtex.logger.log(
+      {
+        message: 'filterByQuantity - availableQuantity',
+        detail: {
+          filteredListWithInventoryByQuantity: skusFilteredByTotalQuantity,
+        },
+      },
+      LogLevel.Info
+    )
   }
 
   ctx.status = 200

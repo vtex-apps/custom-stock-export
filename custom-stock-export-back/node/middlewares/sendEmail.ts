@@ -1,3 +1,5 @@
+import { LogLevel } from '@vtex/api'
+
 import type { BodyEmail } from '../interfaces'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -26,6 +28,15 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
       },
     }
 
+    ctx.vtex.logger.log(
+      {
+        message: 'sendEmail',
+        detail: {
+          bodyEmail,
+        },
+      },
+      LogLevel.Info
+    )
     await emailClient.sendEmail(bodyEmail)
 
     ctx.status = 200

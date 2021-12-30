@@ -1,3 +1,5 @@
+import { LogLevel } from '@vtex/api'
+
 import type { ListOfProductsAndSkusType } from '../interfaces'
 
 export async function getListOfProductsAndSkus(
@@ -21,6 +23,15 @@ export async function getListOfProductsAndSkus(
     const listOfProductsAndSkus: ListOfProductsAndSkusType = response.data
 
     ctx.state.listOfProductsAndSkus = listOfProductsAndSkus
+    ctx.vtex.logger.log(
+      {
+        message: 'getListOfProductsAndSkus',
+        detail: {
+          listOfProductsAndSkus,
+        },
+      },
+      LogLevel.Info
+    )
   } catch (error) {
     console.info('error', error)
     ctx.status = 500

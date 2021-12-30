@@ -1,3 +1,4 @@
+import { LogLevel } from '@vtex/api'
 import { v4 as uuidv4 } from 'uuid'
 import Blob from 'fetch-blob'
 
@@ -30,7 +31,15 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
     const newJsonFiltered = filterColumns(columns, newJson)
 
     ctx.state.jsonFilteredColums = newJsonFiltered
-
+    ctx.vtex.logger.log(
+      {
+        message: 'createCSV',
+        detail: {
+          jsonFilteredColums: newJsonFiltered,
+        },
+      },
+      LogLevel.Info
+    )
     const csv = jsonToCsv(newJsonFiltered)
 
     const name = 'csvStock.csv'
@@ -51,6 +60,16 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
     )
 
     ctx.state.csvUrl = responseFileClient.url
+
+    ctx.vtex.logger.log(
+      {
+        message: 'createCSV',
+        detail: {
+          url: responseFileClient.url,
+        },
+      },
+      LogLevel.Info
+    )
 
     await next()
   } catch (err) {

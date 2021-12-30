@@ -1,3 +1,5 @@
+import { LogLevel } from '@vtex/api'
+
 import type { Sku } from '../interfaces'
 
 /* eslint-disable no-console */
@@ -25,6 +27,15 @@ export async function getSkusData(
     }
 
     ctx.state.skuList = skuList
+    ctx.vtex.logger.log(
+      {
+        message: 'getListOfProductsAndSkus',
+        detail: {
+          skuList,
+        },
+      },
+      LogLevel.Info
+    )
   } catch (error) {
     console.info('error', error)
     ctx.status = 500

@@ -1,7 +1,8 @@
+import { LogLevel } from '@vtex/api'
+
 import type { Inventory, Sku, SkuWithInventory } from '../interfaces'
 import type { Balance } from '../interfaces/inventory'
 
-/* eslint-disable no-console */
 export async function getInventory(
   ctx: Context,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,12 +24,6 @@ export async function getInventory(
 
       skuInventoryDataWithAvailable.balance = skuInventoryData.balance.map(
         (balance: Balance) => {
-          /* const available =
-            balance.totalQuantity >= 1000000
-              ? 'Inf'
-              : balance.totalQuantity - balance.reservedQuantity
-          */
-
           const availableQuantity =
             balance.totalQuantity < 1000000
               ? balance.totalQuantity - balance.reservedQuantity
@@ -57,6 +52,16 @@ export async function getInventory(
     )
 
     ctx.state.skuListWithInventory = skuListWithInventory
+
+    ctx.vtex.logger.log(
+      {
+        message: 'getInventory',
+        detail: {
+          skuListWithInventory,
+        },
+      },
+      LogLevel.Info
+    )
   } catch (error) {
     console.info('error', error)
     ctx.status = 500
