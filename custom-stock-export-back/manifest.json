@@ -1,5 +1,5 @@
 {
-  "name": "custom-stock-e-b",
+  "name": "custom-stock-exp-back",
   "vendor": "vtexarg",
   "version": "0.0.2",
   "title": "Custom Stock Export Back",
@@ -19,9 +19,7 @@
       "url": "https://support.vtex.com/hc/requests"
     },
     "type": "free",
-    "availableCountries": [
-      "*"
-    ]
+    "availableCountries": ["*"]
   },
   "scripts": {
     "prereleasy": "bash lint.sh"

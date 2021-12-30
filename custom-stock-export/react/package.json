@@ -17,7 +17,7 @@
     "typescript": "3.9.7",
     "vtex.catalog-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.catalog-graphql@1.97.0/public/@types/vtex.catalog-graphql",
     "vtex.inventory-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.inventory-graphql@0.18.2/public/@types/vtex.inventory-graphql",
-    "vtex.logistics-carrier-commons": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.logistics-carrier-commons@0.68.1/public/@types/vtex.logistics-carrier-commons",
+    "vtex.logistics-carrier-commons": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.logistics-carrier-commons@0.68.3/public/@types/vtex.logistics-carrier-commons",
     "vtex.logistics-carrier-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.logistics-carrier-graphql@0.41.0/public/@types/vtex.logistics-carrier-graphql",
     "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.132.3/public/@types/vtex.render-runtime",
     "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.145.2/public/@types/vtex.styleguide"

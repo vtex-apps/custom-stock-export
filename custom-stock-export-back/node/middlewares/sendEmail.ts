@@ -1,18 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable no-console */
 
 import type { BodyEmail } from '../interfaces'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function sendEmail(ctx: Context, next: () => Promise<any>) {
   const {
     clients: { emailClient },
   } = ctx
 
-  console.log('sendEmail')
   const { filteredListWithInventoryByQuantity } = ctx.state
-
-  // console.log('filteredListWithInventoryByQuantity', filteredListWithInventoryByQuantity )
 
   try {
     const appId = process.env.VTEX_APP_ID ? process.env.VTEX_APP_ID : ''
@@ -20,8 +16,7 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
       appId
     )
 
-    console.log('customStockExportTemplate', customStockExportTemplate)
-    console.log(ctx.state.csvFile2)
+    const url = ctx.state.csvUrl
 
     const bodyEmail: BodyEmail = {
       providerName: 'no-reply',
@@ -29,13 +24,12 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
       jsonData: {
         to: ['german.bonacchi@vtex.com.br'],
         tradingName: 'customStockExport Test',
-        downloadLink: ctx.state.csvFile2,
+        downloadLink: url,
       },
     }
 
-    const sendEmailResponse = await emailClient.sendEmail(bodyEmail)
+    await emailClient.sendEmail(bodyEmail)
 
-    console.log(sendEmailResponse)
     ctx.status = 200
     ctx.body = {
       data: 'Send email succesfully',
