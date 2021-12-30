@@ -16,17 +16,7 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
 
   try {
     const newJson = formatJsonToConvertCsv(filteredListWithInventoryByQuantity)
-    const columns = [
-      'ProductId',
-      'ProductName',
-      'Id',
-      'SkuName',
-      'warehouseId',
-      'warehouseName',
-      'totalQuantity',
-      'reservedQuantity',
-      'availableQuantity',
-    ]
+    const { columns } = ctx.state.body
 
     const newJsonFiltered = filterColumns(columns, newJson)
 
@@ -37,9 +27,19 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
         ProductName: sku.ProductName,
         SkuId: sku.Id,
         ...sku,
+        WarehouseId: sku.warehouseId,
+        WarehouseName: sku.warehouseName,
+        TotalQuantity: sku.totalQuantity,
+        ReservedQuantity: sku.reservedQuantity,
+        AvailableQuantity: sku.availableQuantity,
       }
 
       delete newSku.Id
+      delete newSku.warehouseId
+      delete newSku.warehouseName
+      delete newSku.totalQuantity
+      delete newSku.reservedQuantity
+      delete newSku.availableQuantity
 
       return newSku
     })

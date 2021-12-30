@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Layout, PageHeader, PageBlock, ButtonWithIcon } from 'vtex.styleguide'
 import { useIntl } from 'react-intl'
 import { appMessages } from './utils/intl'
 import Filters from './components/Filters'
-import ColumnsSelect from './components/ColumnsSelect'
+import ColumnsSelect from './components/Columns/ColumnsSelect'
 import Download from '@vtex/styleguide/lib/icon/Download'
+import { disableColumns } from './components/Columns/columns'
 
 const exportIcon = <Download />
 
 export default function CustomStockExport() {
   const [statements, setStatements] = useState([])
-  const [columns, setColumns] = useState<string[]>([])
+  const [columns, setColumns] = useState<string[]>(disableColumns)
 
   const intl = useIntl()
   const onclickExport = async () => {
@@ -61,6 +62,7 @@ export default function CustomStockExport() {
         }
       }
     })
+    json.columns = columns
     console.log('json', json)
     const response = await fetch('/v1/stock/export', {
       method: 'POST',
@@ -72,6 +74,20 @@ export default function CustomStockExport() {
     if (response.status === 200) {
     }
   }
+  useEffect(() => {
+    const boxes = document.querySelectorAll('.styleguide__box')
+
+    ;[].forEach.call(boxes, function fixBox(box: { classList: { remove: (arg0: string) => void; add: (arg0: string) => void } }) {
+      box.classList.remove('pa7')
+      box.classList.add('pa3')
+    })
+    /*const pageBlocks = document.querySelectorAll('.styleguide__pageBlock')
+
+    ;[].forEach.call(pageBlocks, function fixPageBlock(pageBlock: { lastChild: { classList: { remove: (arg0: string) => void } } }) {
+      pageBlock.lastChild.classList.remove('mb5')
+      pageBlock.lastChild.classList.remove('mb2')
+    })*/
+  }, [])
   return (
     <Layout
       fullWidth
@@ -110,6 +126,7 @@ interface ExportBodyType {
   quantity?: QuantityFilterType
   reservedQuantity?: QuantityFilterType
   availableQuantity?: QuantityFilterType
+  columns?: string[]
 }
 
 interface ProductFilterType {
