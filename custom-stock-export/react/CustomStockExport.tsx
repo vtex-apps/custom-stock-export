@@ -77,16 +77,38 @@ export default function CustomStockExport() {
   useEffect(() => {
     const boxes = document.querySelectorAll('.styleguide__box')
 
-    ;[].forEach.call(boxes, function fixBox(box: { classList: { remove: (arg0: string) => void; add: (arg0: string) => void } }) {
-      box.classList.remove('pa7')
-      box.classList.add('pa3')
-    })
-    /*const pageBlocks = document.querySelectorAll('.styleguide__pageBlock')
-
-    ;[].forEach.call(pageBlocks, function fixPageBlock(pageBlock: { lastChild: { classList: { remove: (arg0: string) => void } } }) {
-      pageBlock.lastChild.classList.remove('mb5')
-      pageBlock.lastChild.classList.remove('mb2')
-    })*/
+    ;[].forEach.call(
+      boxes,
+      function fixBox(box: {
+        classList: {
+          remove: (arg0: string) => void
+          add: (arg0: string) => void
+        }
+      }) {
+        box.classList.remove('pa7')
+        box.classList.add('pa3')
+      }
+    )
+    document
+      ?.getElementsByClassName(
+        't-body lh-copy c-muted-1 mb7 ml3 w-two-thirds-ns w-100'
+      )[0]
+      ?.classList.add('mb4')
+    document
+      ?.getElementsByClassName(
+        't-body lh-copy c-muted-1 mb7 ml3 w-two-thirds-ns w-100'
+      )[0]
+      ?.classList.remove('mb7')
+    document
+      ?.getElementsByClassName(
+        't-body lh-copy c-muted-1 mb7 ml3 w-two-thirds-ns w-100'
+      )[0]
+      ?.classList.add('mb4')
+    document
+      ?.getElementsByClassName(
+        't-body lh-copy c-muted-1 mb7 ml3 w-two-thirds-ns w-100'
+      )[0]
+      ?.classList.remove('mb7')
   }, [])
   return (
     <Layout
