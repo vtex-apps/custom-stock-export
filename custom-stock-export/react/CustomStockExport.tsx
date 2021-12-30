@@ -3,12 +3,14 @@ import { Layout, PageHeader, PageBlock, ButtonWithIcon } from 'vtex.styleguide'
 import { useIntl } from 'react-intl'
 import { appMessages } from './utils/intl'
 import Filters from './components/Filters'
+import ColumnsSelect from './components/ColumnsSelect'
 import Download from '@vtex/styleguide/lib/icon/Download'
 
 const exportIcon = <Download />
 
 export default function CustomStockExport() {
   const [statements, setStatements] = useState([])
+  const [columns, setColumns] = useState<string[]>([])
 
   const intl = useIntl()
   const onclickExport = async () => {
@@ -89,7 +91,9 @@ export default function CustomStockExport() {
           title={`${intl.formatMessage(appMessages.columns)}`}
           variation="full"
           subtitle={`${intl.formatMessage(appMessages.columnsHelp)}`}
-        ></PageBlock>
+        >
+          <ColumnsSelect columns={columns} setColumns={setColumns} />
+        </PageBlock>
         <ButtonWithIcon icon={exportIcon} onClick={onclickExport}>
           {`${intl.formatMessage(appMessages.exportButton)}`}
         </ButtonWithIcon>
