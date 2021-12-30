@@ -30,17 +30,31 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
 
     const newJsonFiltered = filterColumns(columns, newJson)
 
-    ctx.state.jsonFilteredColums = newJsonFiltered
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const newJsonKeyChanged = newJsonFiltered.map((sku: any) => {
+      const newSku = {
+        ProductId: sku.ProductId,
+        ProductName: sku.ProductName,
+        SkuId: sku.Id,
+        ...sku,
+      }
+
+      delete newSku.Id
+
+      return newSku
+    })
+
+    ctx.state.jsonFilteredColums = newJsonKeyChanged
     ctx.vtex.logger.log(
       {
         message: 'createCSV',
         detail: {
-          jsonFilteredColums: newJsonFiltered,
+          jsonFilteredColums: newJsonKeyChanged,
         },
       },
       LogLevel.Info
     )
-    const csv = jsonToCsv(newJsonFiltered)
+    const csv = jsonToCsv(newJsonKeyChanged)
 
     const name = 'csvStock.csv'
     const encoding = '7bit'

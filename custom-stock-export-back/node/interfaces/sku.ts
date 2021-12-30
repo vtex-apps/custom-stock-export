@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface Sku {
-  Id: number
   ProductId: number
   NameComplete: string
   ComplementName: string
@@ -8,6 +7,7 @@ export interface Sku {
   ProductDescription: string
   ProductRefId: string
   TaxCode: string
+  Id: number
   SkuName: string
   IsActive: boolean
   IsTransported: boolean

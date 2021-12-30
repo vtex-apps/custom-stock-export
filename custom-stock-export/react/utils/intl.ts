@@ -6,6 +6,10 @@ const prefixFilters = 'admin/admin.app.custom-stock-export.filters.'
 export const appMessages = defineMessages({
   pageTitle: { id: `${prefix}pageTitle` },
   exportButton: { id: `${prefix}exportButton` },
+  filters: { id: `${prefix}filters` },
+  columns: { id: `${prefix}columns` },
+  filtersHelp: { id: `${prefix}filtersHelp` },
+  columnsHelp: { id: `${prefix}columnsHelp` },
 })
 
 export const filtersMessages = defineMessages({
@@ -17,6 +21,9 @@ export const filtersMessages = defineMessages({
   isNot: { id: `${prefixFilters}isNot` },
   contains: { id: `${prefixFilters}contains` },
   apply: { id: `${prefixFilters}apply` },
+  productId: { id: `${prefixFilters}productId` },
+  productName: { id: `${prefixFilters}productName` },
+  category: { id: `${prefixFilters}category` },
   loading: { id: `${prefixFilters}category.loading` },
   placeholder: { id: `${prefixFilters}category.placeholder` },
   error: { id: `${prefixFilters}category.error` },
