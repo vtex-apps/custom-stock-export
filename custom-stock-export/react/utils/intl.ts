@@ -12,6 +12,7 @@ export const appMessages = defineMessages({
   columnsHelp: { id: `${prefix}columnsHelp` },
   exportSuccess: { id: `${prefix}exportSuccess` },
   exportError: { id: `${prefix}exportError` },
+  exportInProcess: { id: `${prefix}exportInProcess` },
 })
 
 export const filtersMessages = defineMessages({

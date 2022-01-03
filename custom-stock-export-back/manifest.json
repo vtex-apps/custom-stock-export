@@ -71,7 +71,7 @@
   ],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema",
   "settingsSchema": {
-    "title": "VTEX Proxy Mailing Flow",
+    "title": "Custom Stock Export Template",
     "type": "object",
     "properties": {
       "customStockExportTemplate": {

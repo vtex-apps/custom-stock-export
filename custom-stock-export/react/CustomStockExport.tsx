@@ -79,8 +79,8 @@ export default function CustomStockExport() {
     json.email = email
     console.log('json', json)
     setIsLoadingExport(true)
-    setExportMessageType('')
-    setExportMessage('')
+    setExportMessageType('warning')
+    setExportMessage(intl.formatMessage(appMessages.exportInProcess))
     const response = await fetch('/v1/stock/export', {
       method: 'POST',
       headers: {
@@ -121,13 +121,13 @@ export default function CustomStockExport() {
   }, [])
 
   useEffect(() => {
-    if (exportMessage) {
+    if (exportMessage || isLoadingExport) {
       document.querySelectorAll('[role="alert"]').forEach(function (el) {
         el.classList.add('pv2')
         el.classList.remove('pv4')
       })
     }
-  }, [exportMessage])
+  }, [exportMessage, isLoadingExport])
 
   useEffect(() => {
     if (data?.session && !email) {
@@ -167,7 +167,7 @@ export default function CustomStockExport() {
           >
             {`${intl.formatMessage(appMessages.exportButton)}`}
           </ButtonWithIcon>
-          {exportMessage && (
+          {(isLoadingExport || exportMessage) && (
             <div className="ml5">
               <Alert type={exportMessageType}>{exportMessage}</Alert>
             </div>
