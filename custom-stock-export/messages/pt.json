@@ -7,6 +7,8 @@
   "admin/admin.app.custom-stock-export.columns": "Colunas",
   "admin/admin.app.custom-stock-export.filtersHelp": "Use esta seção para filtrar os dados que você deseja exportar.",
   "admin/admin.app.custom-stock-export.columnsHelp": "Use esta seção para selecionar as colunas que você deseja exportar.",
+  "admin/admin.app.custom-stock-export.exportSuccess": "Sucesso na exportação, verifique sua caixa de e-mail.",
+  "admin/admin.app.custom-stock-export.exportError": "A exportação falhou, reveja os logs e tente novamente mais tarde.",
   "admin/admin.app.custom-stock-export.columns.totalQuantity": "Quantidade total",
   "admin/admin.app.custom-stock-export.columns.reserved": "Reservados",
   "admin/admin.app.custom-stock-export.columns.available": "Disponível",

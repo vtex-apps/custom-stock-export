@@ -7,6 +7,7 @@ export interface ExportBodyType {
   reservedQuantity?: QuantityFilterType
   availableQuantity?: QuantityFilterType
   columns: string[]
+  email: string
 }
 
 interface ProductFilterType {

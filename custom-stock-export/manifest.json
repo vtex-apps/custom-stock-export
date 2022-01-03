@@ -15,7 +15,8 @@
     "vtex.catalog-graphql": "1.x",
     "vtex.inventory-graphql": "0.x",
     "vtex.logistics-carrier-commons": "0.x",
-    "vtex.logistics-carrier-graphql": "0.x"
+    "vtex.logistics-carrier-graphql": "0.x",
+    "vtex.session-client": "1.x"
   },
   "billingOptions": {
     "support": {

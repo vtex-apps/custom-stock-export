@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, PageHeader, PageBlock, ButtonWithIcon } from 'vtex.styleguide'
+import {
+  Layout,
+  PageHeader,
+  PageBlock,
+  ButtonWithIcon,
+  Alert,
+} from 'vtex.styleguide'
 import { useIntl } from 'react-intl'
 import { appMessages } from './utils/intl'
 import Filters from './components/Filters'
 import ColumnsSelect from './components/Columns/ColumnsSelect'
 import Download from '@vtex/styleguide/lib/icon/Download'
 import { disableColumns } from './components/Columns/columns'
+import { useFullSession } from 'vtex.session-client'
 
 const exportIcon = <Download />
 
 export default function CustomStockExport() {
+  const { data } = useFullSession()
+
   const [statements, setStatements] = useState([])
   const [columns, setColumns] = useState<string[]>(disableColumns)
+  const [email, setEmail] = useState('')
+  const [isLoadingExport, setIsLoadingExport] = useState(false)
+  const [exportMessage, setExportMessage] = useState('')
+  const [exportMessageType, setExportMessageType] = useState('')
 
   const intl = useIntl()
   const onclickExport = async () => {
@@ -63,7 +76,11 @@ export default function CustomStockExport() {
       }
     })
     json.columns = columns
+    json.email = email
     console.log('json', json)
+    setIsLoadingExport(true)
+    setExportMessageType('')
+    setExportMessage('')
     const response = await fetch('/v1/stock/export', {
       method: 'POST',
       headers: {
@@ -71,7 +88,13 @@ export default function CustomStockExport() {
       },
       body: JSON.stringify(json),
     })
+    setIsLoadingExport(false)
     if (response.status === 200) {
+      setExportMessageType('success')
+      setExportMessage(intl.formatMessage(appMessages.exportSuccess))
+    } else {
+      setExportMessageType('error')
+      setExportMessage(intl.formatMessage(appMessages.exportError))
     }
   }
   useEffect(() => {
@@ -89,27 +112,31 @@ export default function CustomStockExport() {
         box.classList.add('pa3')
       }
     )
-    document
-      ?.getElementsByClassName(
+    for (let i = 0; i < 2; i++) {
+      const classOfElem =
         't-body lh-copy c-muted-1 mb7 ml3 w-two-thirds-ns w-100'
-      )[0]
-      ?.classList.add('mb4')
-    document
-      ?.getElementsByClassName(
-        't-body lh-copy c-muted-1 mb7 ml3 w-two-thirds-ns w-100'
-      )[0]
-      ?.classList.remove('mb7')
-    document
-      ?.getElementsByClassName(
-        't-body lh-copy c-muted-1 mb7 ml3 w-two-thirds-ns w-100'
-      )[0]
-      ?.classList.add('mb4')
-    document
-      ?.getElementsByClassName(
-        't-body lh-copy c-muted-1 mb7 ml3 w-two-thirds-ns w-100'
-      )[0]
-      ?.classList.remove('mb7')
+      document?.getElementsByClassName(classOfElem)[0]?.classList.add('mb4')
+      document?.getElementsByClassName(classOfElem)[0]?.classList.remove('mb7')
+    }
   }, [])
+
+  useEffect(() => {
+    if (exportMessage) {
+      document.querySelectorAll('[role="alert"]').forEach(function (el) {
+        el.classList.add('pv2')
+        el.classList.remove('pv4')
+      })
+    }
+  }, [exportMessage])
+
+  useEffect(() => {
+    if (data?.session && !email) {
+      const session: any = data.session
+      const adminUserEmail =
+        session.namespaces.authentication.adminUserEmail.value
+      setEmail(adminUserEmail)
+    }
+  }, [data])
   return (
     <Layout
       fullWidth
@@ -132,9 +159,20 @@ export default function CustomStockExport() {
         >
           <ColumnsSelect columns={columns} setColumns={setColumns} />
         </PageBlock>
-        <ButtonWithIcon icon={exportIcon} onClick={onclickExport}>
-          {`${intl.formatMessage(appMessages.exportButton)}`}
-        </ButtonWithIcon>
+        <div className="flex">
+          <ButtonWithIcon
+            icon={exportIcon}
+            onClick={onclickExport}
+            isLoading={isLoadingExport}
+          >
+            {`${intl.formatMessage(appMessages.exportButton)}`}
+          </ButtonWithIcon>
+          {exportMessage && (
+            <div className="ml5">
+              <Alert type={exportMessageType}>{exportMessage}</Alert>
+            </div>
+          )}
+        </div>
       </PageBlock>
     </Layout>
   )
@@ -149,6 +187,7 @@ interface ExportBodyType {
   reservedQuantity?: QuantityFilterType
   availableQuantity?: QuantityFilterType
   columns?: string[]
+  email?: string
 }
 
 interface ProductFilterType {

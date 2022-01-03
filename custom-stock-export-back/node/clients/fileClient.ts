@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { IOContext, InstanceOptions } from '@vtex/api'
 import { AppClient } from '@vtex/api'

@@ -2,7 +2,6 @@ import { LogLevel } from '@vtex/api'
 
 import type { Sku } from '../interfaces'
 
-/* eslint-disable no-console */
 export async function getSkusData(
   ctx: Context,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

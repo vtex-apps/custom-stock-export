@@ -22,7 +22,7 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
       providerName: 'no-reply',
       templateName: customStockExportTemplate || 'custom-stock-export',
       jsonData: {
-        to: ['german.bonacchi@vtex.com.br'],
+        to: [ctx.state.body.email],
         tradingName: 'customStockExport Test',
         downloadLink: url,
       },
