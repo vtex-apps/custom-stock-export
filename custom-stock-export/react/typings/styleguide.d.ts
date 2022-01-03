@@ -44,6 +44,7 @@ declare module 'vtex.styleguide' {
   export const ToastProvider
   export const FloatingActionBar
   export const EmptyState
+  export const Link
   export const Tooltip
   export const EXPERIMENTAL_Table
   export const EXPERIMENTAL_useTableMeasures

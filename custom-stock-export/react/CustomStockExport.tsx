@@ -25,7 +25,7 @@ export default function CustomStockExport() {
   const [isLoadingExport, setIsLoadingExport] = useState(false)
   const [exportMessage, setExportMessage] = useState('')
   const [exportMessageType, setExportMessageType] = useState('')
-
+  const [urlCsv, setUrlCsv] = useState('')
   const intl = useIntl()
   const onclickExport = async () => {
     let json: ExportBodyType = {}
@@ -81,6 +81,7 @@ export default function CustomStockExport() {
     setIsLoadingExport(true)
     setExportMessageType('warning')
     setExportMessage(intl.formatMessage(appMessages.exportInProcess))
+    setUrlCsv('')
     const response = await fetch('/v1/stock/export', {
       method: 'POST',
       headers: {
@@ -92,6 +93,8 @@ export default function CustomStockExport() {
     if (response.status === 200) {
       setExportMessageType('success')
       setExportMessage(intl.formatMessage(appMessages.exportSuccess))
+      const responseJson = await response.json()
+      setUrlCsv(responseJson.urlCsv)
     } else {
       setExportMessageType('error')
       setExportMessage(intl.formatMessage(appMessages.exportError))
@@ -121,13 +124,13 @@ export default function CustomStockExport() {
   }, [])
 
   useEffect(() => {
-    if (exportMessage || isLoadingExport) {
+    if (exportMessage || isLoadingExport || urlCsv) {
       document.querySelectorAll('[role="alert"]').forEach(function (el) {
         el.classList.add('pv2')
         el.classList.remove('pv4')
       })
     }
-  }, [exportMessage, isLoadingExport])
+  }, [exportMessage, isLoadingExport, urlCsv])
 
   useEffect(() => {
     if (data?.session && !email) {
@@ -167,9 +170,22 @@ export default function CustomStockExport() {
           >
             {`${intl.formatMessage(appMessages.exportButton)}`}
           </ButtonWithIcon>
-          {(isLoadingExport || exportMessage) && (
+          {((isLoadingExport || exportMessage) && !urlCsv) && (
             <div className="ml5">
-              <Alert type={exportMessageType}>{exportMessage}</Alert>
+              <Alert type={exportMessageType}>
+                {exportMessage}
+              </Alert>
+            </div>
+          )}
+          {((isLoadingExport || exportMessage) && urlCsv) && (
+            <div className="ml5">
+              <Alert type={exportMessageType}>
+                {exportMessage}&nbsp;
+                <a href={urlCsv}>{`${intl.formatMessage(
+                  appMessages.here
+                )}`}</a>
+                {'.'}
+              </Alert>
             </div>
           )}
         </div>

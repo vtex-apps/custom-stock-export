@@ -41,7 +41,8 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
 
     ctx.status = 200
     ctx.body = {
-      data: 'Send email succesfully',
+      message: 'Send email succesfully',
+      urlCsv: ctx.state.csvUrl,
       json: jsonFilteredColums,
     }
   } catch (err) {
