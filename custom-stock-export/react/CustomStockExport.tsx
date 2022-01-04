@@ -7,12 +7,13 @@ import {
   Alert,
 } from 'vtex.styleguide'
 import { useIntl } from 'react-intl'
+import Download from '@vtex/styleguide/lib/icon/Download'
+import { useFullSession } from 'vtex.session-client'
+
 import { appMessages } from './utils/intl'
 import Filters from './components/Filters'
 import ColumnsSelect from './components/Columns/ColumnsSelect'
-import Download from '@vtex/styleguide/lib/icon/Download'
 import { disableColumns } from './components/Columns/columns'
-import { useFullSession } from 'vtex.session-client'
 
 const exportIcon = <Download />
 
@@ -28,7 +29,7 @@ export default function CustomStockExport() {
   const [urlCsv, setUrlCsv] = useState('')
   const intl = useIntl()
   const onclickExport = async () => {
-    let json: ExportBodyType = {}
+    const json: ExportBodyType = {}
 
     statements.forEach((statement: any) => {
       if (statement.subject === 'categoryId') {
@@ -45,9 +46,11 @@ export default function CustomStockExport() {
 
       if (statement.subject === 'warehouseIds') {
         const warehouseIds = []
-        for (let [key, _value] of statement.object.entries()) {
+
+        for (const [key, _value] of statement.object.entries()) {
           warehouseIds.push(key)
         }
+
         json.warehouseIds = warehouseIds
       }
 
@@ -89,11 +92,13 @@ export default function CustomStockExport() {
       },
       body: JSON.stringify(json),
     })
+
     setIsLoadingExport(false)
     if (response.status === 200) {
       setExportMessageType('success')
       setExportMessage(intl.formatMessage(appMessages.exportSuccess))
       const responseJson = await response.json()
+
       setUrlCsv(responseJson.urlCsv)
     } else {
       console.error(await response.json())
@@ -101,6 +106,7 @@ export default function CustomStockExport() {
       setExportMessage(intl.formatMessage(appMessages.exportError))
     }
   }
+
   useEffect(() => {
     const boxes = document.querySelectorAll('.styleguide__box')
 
@@ -119,6 +125,7 @@ export default function CustomStockExport() {
     for (let i = 0; i < 2; i++) {
       const classOfElem =
         't-body lh-copy c-muted-1 mb7 ml3 w-two-thirds-ns w-100'
+
       document?.getElementsByClassName(classOfElem)[0]?.classList.add('mb4')
       document?.getElementsByClassName(classOfElem)[0]?.classList.remove('mb7')
     }
@@ -126,10 +133,12 @@ export default function CustomStockExport() {
 
   useEffect(() => {
     if (exportMessage || isLoadingExport || urlCsv) {
-      document.querySelectorAll('[role="alert"]').forEach(function (el) {
-        el.classList.add('pv2')
-        el.classList.remove('pv4')
-      })
+      document
+        .querySelectorAll('[role="alert"]')
+        .forEach(function findRole(el) {
+          el.classList.add('pv2')
+          el.classList.remove('pv4')
+        })
     }
   }, [exportMessage, isLoadingExport, urlCsv])
 
@@ -138,9 +147,11 @@ export default function CustomStockExport() {
       const session: any = data.session
       const adminUserEmail =
         session.namespaces.authentication.adminUserEmail.value
+
       setEmail(adminUserEmail)
     }
   }, [data])
+
   return (
     <Layout
       fullWidth
@@ -171,20 +182,16 @@ export default function CustomStockExport() {
           >
             {`${intl.formatMessage(appMessages.exportButton)}`}
           </ButtonWithIcon>
-          {((isLoadingExport || exportMessage) && !urlCsv) && (
+          {(isLoadingExport || exportMessage) && !urlCsv && (
             <div className="ml5">
-              <Alert type={exportMessageType}>
-                {exportMessage}
-              </Alert>
+              <Alert type={exportMessageType}>{exportMessage}</Alert>
             </div>
           )}
-          {((isLoadingExport || exportMessage) && urlCsv) && (
+          {(isLoadingExport || exportMessage) && urlCsv && (
             <div className="ml5">
               <Alert type={exportMessageType}>
                 {exportMessage}&nbsp;
-                <a href={urlCsv}>{`${intl.formatMessage(
-                  appMessages.here
-                )}`}</a>
+                <a href={urlCsv}>{`${intl.formatMessage(appMessages.here)}`}</a>
                 {'.'}
               </Alert>
             </div>

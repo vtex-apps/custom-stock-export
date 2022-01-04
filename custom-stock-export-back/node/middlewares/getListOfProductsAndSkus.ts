@@ -20,6 +20,7 @@ export async function getListOfProductsAndSkus(
       categoryId
     )
 
+    // TODO: https://projects-northlatam.atlassian.net/browse/APUB-380?atlOrigin=eyJpIjoiOThjMmQxYTYzYTI2NDcxY2I1OTkzNWNhNjA1MTJkMmUiLCJwIjoiaiJ9
     const listOfProductsAndSkus: ListOfProductsAndSkusType = response.data
 
     ctx.state.listOfProductsAndSkus = listOfProductsAndSkus

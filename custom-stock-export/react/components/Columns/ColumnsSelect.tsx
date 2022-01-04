@@ -1,5 +1,6 @@
 import { Checkbox } from 'vtex.styleguide'
 import React from 'react'
+
 import { disableColumns, allColumns, allColumnsLabels } from './columns'
 import '../../style/Columns.global.css'
 
@@ -19,6 +20,7 @@ export default function ColumnsSelect({
         : [...columns, column]
     )
   }
+
   return (
     <div className="columns-container">
       {allColumns.map((column, index) => (
