@@ -18,8 +18,26 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
     const newJson = formatJsonToConvertCsv(filteredListWithInventoryByQuantity)
     const { columns } = ctx.state.body
 
+    ctx.vtex.logger.log(
+      {
+        message: 'createCSV columns',
+        detail: {
+          columns,
+        },
+      },
+      LogLevel.Info
+    )
     const newJsonFiltered = filterColumns(columns, newJson)
 
+    ctx.vtex.logger.log(
+      {
+        message: 'createCSV newJsonFiltered',
+        detail: {
+          newJsonFiltered,
+        },
+      },
+      LogLevel.Info
+    )
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const newJsonKeyChanged = newJsonFiltered.map((sku: any) => {
       const newSku = {
@@ -89,5 +107,14 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
   } catch (err) {
     ctx.status = 500
     ctx.body = { error: 'Error creating CSV', message: err }
+    ctx.vtex.logger.log(
+      {
+        message: 'Error createCSV',
+        detail: {
+          error: err,
+        },
+      },
+      LogLevel.Error
+    )
   }
 }

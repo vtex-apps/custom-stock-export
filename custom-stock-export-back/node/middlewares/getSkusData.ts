@@ -35,9 +35,18 @@ export async function getSkusData(
       },
       LogLevel.Info
     )
-  } catch (error) {
+  } catch (err) {
     ctx.status = 500
-    ctx.body = error
+    ctx.body = err
+    ctx.vtex.logger.log(
+      {
+        message: 'Error getSkusData',
+        detail: {
+          error: err,
+        },
+      },
+      LogLevel.Error
+    )
 
     return
   }

@@ -48,6 +48,15 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
   } catch (err) {
     ctx.status = 500
     ctx.body = { error: 'Error sending email', message: err }
+    ctx.vtex.logger.log(
+      {
+        message: 'Error sending email',
+        detail: {
+          error: err,
+        },
+      },
+      LogLevel.Error
+    )
   }
 
   await next()

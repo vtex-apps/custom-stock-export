@@ -1,3 +1,5 @@
+import { LogLevel } from '@vtex/api'
+
 import type { SkuWithInventory } from '../interfaces'
 
 export async function filterByWarehouseIds(
@@ -26,9 +28,18 @@ export async function filterByWarehouseIds(
       })
 
       ctx.state.filteredListWithInventoryByWarehouseIds = skusFilteredByWarehouseIds
-    } catch (error) {
+    } catch (err) {
       ctx.status = 500
-      ctx.body = error
+      ctx.body = err
+      ctx.vtex.logger.log(
+        {
+          message: 'Error filterByWarehouseIds',
+          detail: {
+            error: err,
+          },
+        },
+        LogLevel.Error
+      )
 
       return
     }

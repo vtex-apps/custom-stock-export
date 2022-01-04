@@ -46,9 +46,19 @@ export async function filterByProductId(
           },
           LogLevel.Info
         )
-      } catch (error) {
+      } catch (err) {
         ctx.status = 500
-        ctx.body = error
+        ctx.body = err
+
+        ctx.vtex.logger.log(
+          {
+            message: 'Error filterByProductId',
+            detail: {
+              error: err,
+            },
+          },
+          LogLevel.Error
+        )
 
         return
       }
