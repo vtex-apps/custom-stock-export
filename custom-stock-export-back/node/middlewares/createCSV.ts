@@ -65,15 +65,42 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
     ctx.state.jsonFilteredColums = newJsonKeyChanged
     ctx.vtex.logger.log(
       {
-        message: 'createCSV',
+        message: 'createCSV - jsonFilteredColums',
         detail: {
           jsonFilteredColums: newJsonKeyChanged,
         },
       },
       LogLevel.Info
     )
+
+    if (newJsonKeyChanged.length === 0) {
+      ctx.vtex.logger.log(
+        {
+          message: 'createCSV - jsonFilteredColums is empty',
+          detail: {
+            jsonFilteredColums: newJsonKeyChanged,
+          },
+        },
+        LogLevel.Info
+      )
+
+      ctx.status = 201
+      ctx.body = { message: 'Export is empty' }
+
+      return
+    }
+
     const csv = jsonToCsv(newJsonKeyChanged)
 
+    ctx.vtex.logger.log(
+      {
+        message: 'createCSV - csv',
+        detail: {
+          csv,
+        },
+      },
+      LogLevel.Info
+    )
     const name = 'csvStock.csv'
     const encoding = '7bit'
     const mimeType = 'text/csv'

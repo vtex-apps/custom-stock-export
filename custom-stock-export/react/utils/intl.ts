@@ -13,6 +13,7 @@ export const appMessages = defineMessages({
   exportSuccess: { id: `${prefix}exportSuccess` },
   exportError: { id: `${prefix}exportError` },
   exportInProcess: { id: `${prefix}exportInProcess` },
+  exportEmpty: { id: `${prefix}exportEmpty` },
   here: { id: `${prefix}here` },
 })
 

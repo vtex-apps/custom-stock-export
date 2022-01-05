@@ -100,6 +100,9 @@ export default function CustomStockExport() {
       const responseJson = await response.json()
 
       setUrlCsv(responseJson.urlCsv)
+    } else if (response.status === 201) {
+      setExportMessageType('warning')
+      setExportMessage(intl.formatMessage(appMessages.exportEmpty))
     } else {
       console.error(await response.json())
       setExportMessageType('error')
