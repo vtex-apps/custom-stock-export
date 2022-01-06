@@ -9,6 +9,7 @@ import {
 import { useIntl } from 'react-intl'
 import Download from '@vtex/styleguide/lib/icon/Download'
 import { useFullSession } from 'vtex.session-client'
+import { useLoggerVtex } from 'vtex.vtex-logger-react'
 
 import { appMessages } from './utils/intl'
 import Filters from './components/Filters'
@@ -28,6 +29,7 @@ export default function CustomStockExport() {
   const [exportMessageType, setExportMessageType] = useState('')
   const [urlCsv, setUrlCsv] = useState('')
   const intl = useIntl()
+  const { useLog } = useLoggerVtex()
   const onclickExport = async () => {
     const json: ExportBodyType = {}
 
@@ -80,7 +82,13 @@ export default function CustomStockExport() {
     })
     json.columns = columns
     json.email = email
-    console.log('json', json)
+    const appName = 'custom-stock-export'
+    const message = 'Export body json'
+    await useLog({
+      app: appName,
+      message: message,
+      detail: json,
+    })
     setIsLoadingExport(true)
     setExportMessageType('warning')
     setExportMessage(intl.formatMessage(appMessages.exportInProcess))

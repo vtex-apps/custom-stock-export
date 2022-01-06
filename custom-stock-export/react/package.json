@@ -22,7 +22,7 @@
     "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.132.3/public/@types/vtex.render-runtime",
     "vtex.session-client": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.session-client@1.0.2/public/@types/vtex.session-client",
     "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.145.2/public/@types/vtex.styleguide",
-    "vtexarg.custom-stock-exp": "https://customstockexport--gbonacchi.myvtex.com/_v/private/typings/linked/v1/vtexarg.custom-stock-exp@0.0.2+build1641211114/public/@types/vtexarg.custom-stock-exp"
+    "vtexarg.custom-stock-exp": "https://customstockexport--poccarrefourarg.myvtex.com/_v/private/typings/linked/v1/vtexarg.custom-stock-exp@0.0.2+build1641404924/public/@types/vtexarg.custom-stock-exp"
   },
   "dependencies": {
     "@types/faker": "^4.1.5",
