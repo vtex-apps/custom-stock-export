@@ -43,7 +43,7 @@ export default function CustomStockExport() {
       }
 
       if (statement.subject === 'productName') {
-        json.productId = { value: statement.object, operator: statement.verb }
+        json.productName = { value: statement.object, operator: statement.verb }
       }
 
       if (statement.subject === 'warehouseIds') {
