@@ -5,8 +5,8 @@ import { Clients } from './clients'
 import { getBody } from './middlewares/getBody'
 import { getListOfProductsAndSkus } from './middlewares/getListOfProductsAndSkus'
 import { filterByProductId } from './middlewares/filterByProductId'
-import { getSkusData } from './middlewares/getSkusData'
 import { filterByProductName } from './middlewares/filterByProductName'
+import { getSkusData } from './middlewares/getSkusData'
 import { getInventory } from './middlewares/getInventory'
 import { filterByWarehouseIds } from './middlewares/filterByWarehouseIds'
 import { filterByQuantity } from './middlewares/filterByQuantity'
@@ -55,8 +55,8 @@ export default new Service({
         getBody,
         getListOfProductsAndSkus,
         filterByProductId,
-        getSkusData,
         filterByProductName,
+        getSkusData,
         getInventory,
         filterByWarehouseIds,
         filterByQuantity,

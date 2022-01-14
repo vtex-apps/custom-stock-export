@@ -19,7 +19,9 @@
       "url": "https://support.vtex.com/hc/requests"
     },
     "type": "free",
-    "availableCountries": ["*"]
+    "availableCountries": [
+      "*"
+    ]
   },
   "scripts": {
     "prereleasy": "bash lint.sh"
@@ -31,6 +33,20 @@
       "attrs": {
         "host": "{{account}}.myvtex.com",
         "path": "/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "httpstat.us",
+        "path": "*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "{{account}}.vtexcommercestable.com.br",
+        "path": "/api/*"
       }
     },
     {
@@ -53,13 +69,6 @@
       "name": "send-message"
     },
     {
-      "name": "outbound-access",
-      "attrs": {
-        "host": "httpstat.us",
-        "path": "*"
-      }
-    },
-    {
       "name": "colossus-fire-event"
     },
     {
@@ -67,6 +76,9 @@
     },
     {
       "name": "vtex.file-manager:file-manager-read-write"
+    },
+    {
+      "name": "Sku.aspx"
     }
   ],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema",

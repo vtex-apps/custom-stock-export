@@ -17,7 +17,7 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
   try {
     const newJson = formatJsonToConvertCsv(filteredListWithInventoryByQuantity)
     const { columns } = ctx.state.body
-
+    console.log('createCSV start')
     ctx.vtex.logger.log(
       {
         message: 'createCSV columns',
@@ -32,9 +32,6 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
     ctx.vtex.logger.log(
       {
         message: 'createCSV newJsonFiltered',
-        detail: {
-          newJsonFiltered,
-        },
       },
       LogLevel.Info
     )
@@ -66,9 +63,6 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
     ctx.vtex.logger.log(
       {
         message: 'createCSV - jsonFilteredColums',
-        detail: {
-          jsonFilteredColums: newJsonKeyChanged,
-        },
       },
       LogLevel.Info
     )
@@ -77,9 +71,6 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
       ctx.vtex.logger.log(
         {
           message: 'createCSV - jsonFilteredColums is empty',
-          detail: {
-            jsonFilteredColums: newJsonKeyChanged,
-          },
         },
         LogLevel.Info
       )
@@ -119,6 +110,7 @@ export async function createCSV(ctx: Context, next: () => Promise<any>) {
     )
 
     ctx.state.csvUrl = responseFileClient.url
+    console.log('createCSV end')
 
     ctx.vtex.logger.log(
       {

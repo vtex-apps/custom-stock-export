@@ -11,8 +11,8 @@ export interface State extends RecorderState {
   body: ExportBodyType
   listOfProductsAndSkus: ListOfProductsAndSkusType
   filteredListOfProductsById: { [key: string]: number[] }
+  filteredListOfProductsByName: { [key: string]: number[] }
   skuList: Sku[]
-  filteredListOfSkusByName: Sku[]
   skuListWithInventory: SkuWithInventory[]
   filteredListWithInventoryByWarehouseIds: SkuWithInventory[]
   filteredListWithInventoryByQuantity: SkuWithInventory[]

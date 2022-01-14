@@ -12,11 +12,18 @@ export async function getInventory(
     clients: { inventoryClient },
   } = ctx
 
-  const { filteredListOfSkusByName } = ctx.state
+  console.log('getInventory start')
+  ctx.vtex.logger.log(
+    {
+      message: 'getInventory start',
+    },
+    LogLevel.Info
+  )
+  const { skuList } = ctx.state
   const skuInventoryList: Inventory[] = []
 
   try {
-    for (const sku of filteredListOfSkusByName) {
+    for (const sku of skuList) {
       // eslint-disable-next-line no-await-in-loop
       const getInventoryResponse = await inventoryClient.getInventory(sku.Id)
       const skuInventoryData = getInventoryResponse.data
@@ -40,7 +47,7 @@ export async function getInventory(
       skuInventoryList.push(skuInventoryDataWithAvailable)
     }
 
-    const skuListWithInventory: SkuWithInventory[] = filteredListOfSkusByName.map(
+    const skuListWithInventory: SkuWithInventory[] = skuList.map(
       (sku: Sku, index: number) => {
         const skuWithInventory: SkuWithInventory = {
           sku,
@@ -51,14 +58,13 @@ export async function getInventory(
       }
     )
 
+    console.log('getInventory end')
+
     ctx.state.skuListWithInventory = skuListWithInventory
 
     ctx.vtex.logger.log(
       {
-        message: 'getInventory',
-        detail: {
-          skuListWithInventory,
-        },
+        message: 'getInventory end',
       },
       LogLevel.Info
     )

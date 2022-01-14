@@ -5,6 +5,13 @@ export async function filterByProductId(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   next: () => Promise<any>
 ) {
+  console.log('filterByProductId start')
+  ctx.vtex.logger.log(
+    {
+      message: 'filterByProductId start',
+    },
+    LogLevel.Info
+  )
   const { productId: bodyProductId } = ctx.state.body
   const { listOfProductsAndSkus } = ctx.state
 
@@ -37,15 +44,6 @@ export async function filterByProductId(
           }, {})
 
         ctx.state.filteredListOfProductsById = filteredListOfProductsById
-        ctx.vtex.logger.log(
-          {
-            message: 'filterByProductId',
-            detail: {
-              filteredListOfProductsById,
-            },
-          },
-          LogLevel.Info
-        )
       } catch (err) {
         ctx.status = 500
         ctx.body = err
@@ -67,25 +65,21 @@ export async function filterByProductId(
       ctx.vtex.logger.log(
         {
           message: 'filterByProductId',
-          detail: {
-            filteredListOfProductsById: listOfProductsAndSkus.data,
-          },
         },
         LogLevel.Info
       )
     }
   } else {
     ctx.state.filteredListOfProductsById = listOfProductsAndSkus.data
-    ctx.vtex.logger.log(
-      {
-        message: 'filterByProductId',
-        detail: {
-          filteredListOfProductsById: listOfProductsAndSkus.data,
-        },
-      },
-      LogLevel.Info
-    )
   }
+
+  ctx.vtex.logger.log(
+    {
+      message: 'filterByProductId end',
+    },
+    LogLevel.Info
+  )
+  console.log('filterByProductId end')
 
   await next()
 }

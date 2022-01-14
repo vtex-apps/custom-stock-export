@@ -11,25 +11,63 @@ export async function getListOfProductsAndSkus(
     clients: { getProductAndSkuIdsClient },
   } = ctx
 
+  ctx.vtex.logger.log(
+    {
+      message: 'getListOfProductsAndSkus start',
+    },
+    LogLevel.Info
+  )
+  console.log('getListOfProductsAndSkus start')
   const { body } = ctx.state
 
   try {
     const { categoryId } = body
-
-    const response = await getProductAndSkuIdsClient.listOfProductsAndSkus(
-      categoryId
+    const from = 1
+    const to = 50
+    const firstResponse = await getProductAndSkuIdsClient.listOfProductsAndSkus(
+      categoryId,
+      from,
+      to
     )
 
-    // TODO: https://projects-northlatam.atlassian.net/browse/APUB-380?atlOrigin=eyJpIjoiOThjMmQxYTYzYTI2NDcxY2I1OTkzNWNhNjA1MTJkMmUiLCJwIjoiaiJ9
-    const listOfProductsAndSkus: ListOfProductsAndSkusType = response.data
+    const { data, range } = firstResponse.data
+    let { total } = range
 
+    console.log('total', total)
+
+
+    let fullData = data
+
+    if (total > to) {
+      const morePagesValue = 50
+
+      for (
+        let i = from + morePagesValue;
+        i <= total;
+        i +=
+          i + morePagesValue > total && total !== i ? total - i : morePagesValue
+      ) {
+        console.log('range i: ', i)
+        // eslint-disable-next-line no-await-in-loop
+        const response = await getProductAndSkuIdsClient.listOfProductsAndSkus(
+          categoryId,
+          i,
+          i + morePagesValue
+        )
+
+        fullData = { ...fullData, ...response.data.data }
+      }
+    }
+
+    console.log('getListOfProductsAndSkus 3')
+
+    const listOfProductsAndSkus: ListOfProductsAndSkusType = { data: fullData }
+
+    console.log('getListOfProductsAndSkus end')
     ctx.state.listOfProductsAndSkus = listOfProductsAndSkus
     ctx.vtex.logger.log(
       {
-        message: 'getListOfProductsAndSkus',
-        detail: {
-          listOfProductsAndSkus,
-        },
+        message: 'getListOfProductsAndSkus end',
       },
       LogLevel.Info
     )

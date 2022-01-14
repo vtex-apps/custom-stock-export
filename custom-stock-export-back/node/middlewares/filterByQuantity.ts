@@ -8,6 +8,7 @@ export async function filterByQuantity(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   next: () => Promise<any>
 ) {
+  console.log('filterByQuantity start')
   const { quantity, reservedQuantity, availableQuantity } = ctx.state.body
 
   const { filteredListWithInventoryByWarehouseIds } = ctx.state
@@ -89,12 +90,10 @@ export async function filterByQuantity(
     )
 
     ctx.state.filteredListWithInventoryByQuantity = skusFilteredByTotalQuantity
+
     ctx.vtex.logger.log(
       {
         message: 'filterByQuantity - totalQuantity',
-        detail: {
-          filteredListWithInventoryByQuantity: skusFilteredByTotalQuantity,
-        },
       },
       LogLevel.Info
     )
@@ -119,9 +118,6 @@ export async function filterByQuantity(
     ctx.vtex.logger.log(
       {
         message: 'filterByQuantity - reservedQuantity',
-        detail: {
-          filteredListWithInventoryByQuantity: skusFilteredByTotalQuantity,
-        },
       },
       LogLevel.Info
     )
@@ -142,18 +138,14 @@ export async function filterByQuantity(
     )
 
     ctx.state.filteredListWithInventoryByQuantity = skusFilteredByTotalQuantity
+    console.log('filterByQuantity end')
     ctx.vtex.logger.log(
       {
         message: 'filterByQuantity - availableQuantity',
-        detail: {
-          filteredListWithInventoryByQuantity: skusFilteredByTotalQuantity,
-        },
       },
       LogLevel.Info
     )
   }
 
-  ctx.status = 200
-  ctx.body = ctx.state.filteredListWithInventoryByQuantity
   await next()
 }

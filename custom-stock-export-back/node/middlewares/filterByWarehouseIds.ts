@@ -7,6 +7,7 @@ export async function filterByWarehouseIds(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   next: () => Promise<any>
 ) {
+  console.log('filterByWarehouseIds')
   const { warehouseIds } = ctx.state.body
   const { skuListWithInventory } = ctx.state
 
@@ -26,7 +27,12 @@ export async function filterByWarehouseIds(
           skusFilteredByWarehouseIds.push(skuAux)
         }
       })
-
+      ctx.vtex.logger.log(
+        {
+          message: 'filterByWarehouseIds',
+        },
+        LogLevel.Info
+      )
       ctx.state.filteredListWithInventoryByWarehouseIds = skusFilteredByWarehouseIds
     } catch (err) {
       ctx.status = 500

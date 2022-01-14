@@ -16,7 +16,16 @@ export default class GetProductAndSkuIdsClient extends ExternalClient {
     )
   }
 
-  public async listOfProductsAndSkus(categoryId: number | undefined) {
-    return this.http.getRaw(categoryId ? `?categoryId=${categoryId}` : ``)
+  public async listOfProductsAndSkus(
+    categoryId: number | undefined,
+    from: number,
+    to: number
+  ) {
+    const withCategoryId = categoryId ? `?categoryId=${categoryId}` : ``
+    const withRange = withCategoryId
+      ? `${withCategoryId}&_from=${from}&_to=${to}`
+      : `?_from=${from}&_to=${to}`
+
+    return this.http.getRaw(withRange)
   }
 }

@@ -7,7 +7,7 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
   const {
     clients: { emailClient },
   } = ctx
-
+  console.log('sendEmail start')
   const { jsonFilteredColums } = ctx.state
 
   try {
@@ -38,6 +38,7 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
       LogLevel.Info
     )
     await emailClient.sendEmail(bodyEmail)
+    console.log('sendEmail end')
 
     ctx.status = 200
     ctx.body = {

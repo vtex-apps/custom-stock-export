@@ -11,12 +11,23 @@ export async function getSkusData(
     clients: { catalogClient },
   } = ctx
 
-  const { filteredListOfProductsById } = ctx.state
+  console.log('getSkusData start')
+  ctx.vtex.logger.log(
+    {
+      message: 'getListOfProductsAndSkus start',
+    },
+    LogLevel.Info
+  )
+  const { filteredListOfProductsByName } = ctx.state
   const skuList = []
 
   try {
-    for (const product in filteredListOfProductsById) {
-      for (const sku of filteredListOfProductsById[product]) {
+    let i = 0
+
+    for (const product in filteredListOfProductsByName) {
+      console.log('n producto: ', i)
+      i++
+      for (const sku of filteredListOfProductsByName[product]) {
         // eslint-disable-next-line no-await-in-loop
         const getSkuResponse = await catalogClient.getSku(sku)
         const skuData: Sku = getSkuResponse.data
@@ -26,16 +37,16 @@ export async function getSkusData(
     }
 
     ctx.state.skuList = skuList
+    console.log('getSkusData end')
+
     ctx.vtex.logger.log(
       {
-        message: 'getListOfProductsAndSkus',
-        detail: {
-          skuList,
-        },
+        message: 'getListOfProductsAndSkus end',
       },
       LogLevel.Info
     )
   } catch (err) {
+    console.log('getSkusData error: ', err)
     ctx.status = 500
     ctx.body = err
     ctx.vtex.logger.log(

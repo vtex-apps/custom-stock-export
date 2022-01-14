@@ -1,10 +1,10 @@
 {
-  "memory": 256,
+  "memory": 1000,
   "ttl": 10,
-  "timeout": 6000,
+  "timeout": 60000,
   "minReplicas": 10,
   "maxReplicas": 20,
-  "workers": 1,
+  "workers": 2,
   "routes": {
     "export": {
       "path": "/v1/stock/export",
